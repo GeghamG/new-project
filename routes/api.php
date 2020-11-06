@@ -22,9 +22,9 @@ Route::group(
     ['middleware' => 'api'],
     function ($router) {
     Route::post('logout', 'Auth\AuthController@logout');
-    Route::post('youtube', 'YoutubeController@index');
-    Route::post('youtube/create', 'YoutubeController@create');
-    Route::post('youtube/show', 'YoutubeController@show');
-    Route::post('youtube/store', 'SongsController@store');
-    Route::post('youtube/playlist', 'SongsController@index');
+    Route::post('getProduct', 'ProductsController@getProduct');
+    Route::post('addCart/{id}', 'CartController@addCart');
+    Route::post('countCart', 'CartController@countCart');
+    Route::post('plansProduct', 'CartController@plansProduct');
+
 });

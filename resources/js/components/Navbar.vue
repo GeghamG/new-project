@@ -31,20 +31,33 @@
                             <v-icon>mdi-home</v-icon>
                         </v-list-item-icon>
                         <v-list-item-title>
-                            <router-link to="/youtube" class="text-h6 text-white">Home</router-link>
+                            <router-link to="/home" class="text-h6 text-white">Home</router-link>
                         </v-list-item-title>
                     </v-list-item>
 
-                    <router-link to="/youtube" class="text-decoration-none">
+                    <router-link to="/home" class="text-decoration-none">
                         <v-list-item class="text-h6 text-white">
                             <v-list-item-icon>
                                 <v-icon color="red">mdi-youtube</v-icon>
                             </v-list-item-icon>
                             <v-list-item-title>
-                                Youtube
+                                Home
                             </v-list-item-title>
                         </v-list-item>
                     </router-link>
+
+                    <router-link to="/shop" class="text-decoration-none">
+                        <v-list-item class="text-h6 text-white">
+                            <v-list-item-icon>
+                                <v-icon color="red">mdi-youtube</v-icon>
+                            </v-list-item-icon>
+                            <v-list-item-title>
+                                shop
+                            </v-list-item-title>
+                        </v-list-item>
+                    </router-link>
+
+
 
 
 
