@@ -7,35 +7,34 @@
         :step="step"
         @back="$emit('back')"
       />
-
       <v-row
         class="plan-items"
         justify="space-around"
       >
         <v-col
-          v-for="(item, index) in plansData"
-          :key="index"
+          v-for="(item, index) in plansItemArray"
+          :key="item.id"
           xs="12"
           sm="12"
           md="12"
           lg="4"
           class="my-5"
         >
-
+            <!--            :benefits="item.benefits" :index="index"  :custom="item.custom" :updated-plan="item.updated"-->
           <PlansItem
             :id="item.id"
-            :custom="item.custom"
-            :updated-plan="item.updated"
             :img="item.img"
             :name="item.name"
             :description="item.description"
             :cost="item.cost"
             :index="index"
-            :benefits="item.benefits"
+            :updated-plan="item.updated"
+            :custom="item.custom"
             @select-plan="selectPlan"
           />
         </v-col>
       </v-row>
+
       <p class="font__small-description">
         * Lorem Ipsum is simply dummy text of the printing and
         typesetting industry. Lorem Ipsum has been the industry's
@@ -46,15 +45,14 @@
 </template>
 
 <script>
-// import PlansHeader from '@/components/plans/PlansHeader';
-// import PlansItem from '@/components/plans/plans-wrapper/PlansItem';
+
 import PlansHeader  from "../PlansHeader"
 import PlansItem from './PlansItem';
-
-import { mapState, mapGetters } from 'vuex';
-
 export default {
   name: 'PlansWrapper',
+    data: () => ({
+        plansItemArray:[]
+    }),
   components: {
     PlansHeader,
     PlansItem
@@ -65,19 +63,19 @@ export default {
       default: null
     }
   },
-  computed: {
-    ...mapState({
-      plansData: state => {
-          console.log(state.index.plansData);
-          return state.index.plansData
-      }
-    })
-      // ...mapGetters(['currentPlan'])
-  },
+    created() {
+        this.plansItem()
+    },
   methods: {
     selectPlan(id) {
       this.$emit('select-plan', id);
+    },
+      plansItem(){
+        axios.post('/api/plansItem').then((response)=>{
+            this.plansItemArray = response.data.plansItem
+        })
     }
   }
+
 };
 </script>

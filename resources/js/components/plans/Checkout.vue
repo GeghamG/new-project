@@ -4,7 +4,7 @@
       Number of your order: {{ hardDate }}
     </h2>
     <img
-      src = "../../assets/plans/checkout/company.svg"
+      :src = "checked.img"
       alt=""
     >
     <p class="plan-checkout__text mt-14">
@@ -34,12 +34,14 @@ import { mapState } from 'vuex';
 export default {
   name: 'Checkout',
   data: () => ({
-    hardDate: '91203902'
+    hardDate: '91203902',
+    checked:{}
   }),
-  computed: {
-    ...mapState({
-      plansData: state => state.plansData
-    })
-  }
+
+    mounted() {
+      axios.post('/api/checked').then((response)=>{
+          this.checked = response.data
+      })
+    }
 };
 </script>

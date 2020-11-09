@@ -5,14 +5,14 @@ export default {
     register(ctx, data) {
         AuthService.register(data).then(response => {
             localStorage.setItem('token', response.access_token);
-            router.push('/home');
+            router.push('/');
         });
     },
 
     login(ctx, data) {
         AuthService.login(data).then(response => {
             localStorage.setItem('token', response.access_token);
-            router.push('/home');
+            router.push('/');
         });
     },
 

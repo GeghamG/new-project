@@ -4,6 +4,7 @@ import footer from "../components/AppFooter";
 import VueRouter from 'vue-router'
 import Register from "../pages/Register";
 import Login from "../pages/Login";
+import AdminLogin  from "../pages/adminAuth/Login"
 
 Vue.use(VueRouter);
 
@@ -28,6 +29,11 @@ const routes = [
     {
         path: '/login',
         component: Login,
+    },
+
+    {
+        path: '/admin/login',
+        component: AdminLogin,
     },
 
     {
@@ -122,33 +128,73 @@ const router = new VueRouter({
     routes
 });
 
+//
+// router.beforeEach((to, from, next) => {
+//         const token = localStorage.getItem('token');
+//         const tokenAdmin = localStorage.getItem('tokenAdmin');
+//         if (!token && to.path !== '/login') {
+//             if(to.path === '/register'){
+//                 next()
+//             } else{
+//                 next({
+//                         path: '/login',
+//
+//                     });
+//             }
+//         } else if(token && (to.path === '/login' ||  to.path === '/register')){
+//             next({
+//                 path: '/',
+//             });
+//         }
+//         else if(token && to.path!=='/login' &&  to.path !== '/register' )
+//         {
+//
+//             if(router.options.routes.map(item=>item.path).indexOf(to.path) == -1){
+//                 next({
+//                     path: '/',
+//                 });
+//             }
+//         }
+//     next()
+// })
 
-router.beforeEach((to, from, next) => {
-        const token = localStorage.getItem('token');
-        if (!token && to.path !== '/login') {
-            if(to.path === '/register'){
-                next()
-            } else{
-                next({
-                        path: '/login',
 
-                    });
-            }
-        } else if(token && (to.path === '/login' ||  to.path === '/register')){
-            next({
-                path: '/',
-            });
-        }
-        else if(token && to.path!=='/login' &&  to.path !== '/register' )
-        {
 
-            if(router.options.routes.map(item=>item.path).indexOf(to.path) == -1){
-                next({
-                    path: '/',
-                });
-            }
-        }
-    next()
-})
+//
+// router.beforeEach((to, from, next) => {
+//     const token = localStorage.getItem('token');
+//     const tokenAdmin = localStorage.getItem('tokenAdmin');
+//     if (!token &&  to.path !== '/' ) {
+//         if(to.path === '/register' && to.path === '/login'){
+//             next()
+//         } else{
+//             next({
+//                 path: '/',
+//
+//             });
+//         }
+//     } else if(token && (to.path === '/login' ||  to.path === '/register')){
+//         next({
+//             path: '/',
+//         });
+//     }
+//     else if(token && to.path!=='/login' &&  to.path !== '/register' )
+//     {
+//
+//         if(router.options.routes.map(item=>item.path).indexOf(to.path) == -1){
+//             next({
+//                 path: '/',
+//             });
+//         }
+//     }
+//     next()
+// })
+//
+
+
+
+
+
+
 
 export default router;

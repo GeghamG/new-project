@@ -13,11 +13,11 @@ return [
     |
     */
 
+
     'defaults' => [
         'guard' => 'api',
         'passwords' => 'users',
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Authentication Guards
@@ -51,6 +51,16 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+
+        'admins' => [
+            'driver' => 'jwt',
+            'provider' => 'admins',
+        ],
+        'admins_api' => [
+            'driver' => 'jwt',
+            'provider' => 'admins',
+            'hash' => false,
+        ],
     ],
 
     /*
@@ -74,6 +84,11 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Admin::class,
         ],
 
         // 'users' => [
@@ -104,6 +119,13 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
+
+//        'admins' => [
+//            'provider' => 'admins',
+//            'table' => 'password_resets',
+//            'expire' => 15,
+//            'throttle' => 60,
+//        ],
     ],
 
     /*

@@ -89,6 +89,7 @@
               <v-col
                 sm="1"
               >
+
                 <v-checkbox
                   v-model="item.checked"
                   color="#EFB60F"
@@ -171,16 +172,10 @@
 
 <script>
 import { mapState, mapMutations } from 'vuex';
-// import PlansHeader from '@/components/plans/PlansHeader'
 import PlansHeader from "../plans/PlansHeader";
-// import box from '@/assets/plans/benefits/box.svg';
 import box from "../../assets/plans/benefits/box.svg"
-
-// import edit from '@/assets/plans/benefits/edit.svg';
 import  edit from "../../assets/plans/benefits/edit.svg";
-// import money_back from '@/assets/plans/benefits/money_back.svg';
 import  money_back  from '../../assets/plans/benefits/money_back.svg'
-// import clock_icon from '@/assets/plans/benefits/clock_icon.svg';
 import clock_icon from  "../../assets/plans/benefits/clock_icon.svg"
 export default {
   name: 'EditPlan',
@@ -193,81 +188,78 @@ export default {
       default: null
     },
     selectedPlanId: {
-      type: String,
+      type: Number,
       default: ''
     }
-  },
-  computed: {
-    ...mapState({
-      plansData: state => state.index.plansData
-    })
   },
   data: () => ({
     tmpCost: null,
     tmpCurrentPlan: {},
+      checked: false,
     resubscribePeriodValue: '',
-    benefits: [
-      {
-        image: box,
-        name: 'Free shipping',
-        cost: 20,
-        checked: false
-      },
-      {
-        image: edit,
-        name: 'Free edit plan',
-        cost: 20,
-        checked: false
-      },
-      {
-        image: edit,
-        name: 'Free changing',
-        cost: 29,
-        checked: false
-      },
-      {
-        image: money_back,
-        name: 'Money back',
-        cost: 3,
-        checked: false
-      },
-      {
-        image: clock_icon,
-        name: 'Rough hours shipping',
-        cost: 3,
-        checked: false
-      },
-      {
-        image: box,
-        name: 'Free shipping + bonus',
-        cost: 4,
-        checked: false
-      },
-      {
-        image: edit,
-        name: 'Free edit plan + bonus',
-        cost: 5,
-        checked: false
-      },
-      {
-        image: edit,
-        name: 'Free changing + bonus',
-        cost: 5,
-        checked: false
-      },
-      {
-        image: money_back,
-        name: 'Money back + bonus',
-        cost: 10,
-        checked: false
-      },
-      {
-        image: clock_icon,
-        name: 'Rough hours shipping + bonus',
-        cost: 10,
-        checked: false
-      }
-    ],
+      benefits:[],
+    // benefits: [
+    //   {
+    //     image: box,
+    //     name: 'Free shipping',
+    //     cost: 20,
+    //     checked: false
+    //   },
+    //   {
+    //     image: edit,
+    //     name: 'Free edit plan',
+    //     cost: 20,
+    //     checked: false
+    //   },
+    //   {
+    //     image: edit,
+    //     name: 'Free changing',
+    //     cost: 29,
+    //     checked: false
+    //   },
+    //   {
+    //     image: money_back,
+    //     name: 'Money back',
+    //     cost: 3,
+    //     checked: false
+    //   },
+    //   {
+    //     image: clock_icon,
+    //     name: 'Rough hours shipping',
+    //     cost: 3,
+    //     checked: false
+    //   },
+    //   {
+    //     image: box,
+    //     name: 'Free shipping + bonus',
+    //     cost: 4,
+    //     checked: false
+    //   },
+    //   {
+    //     image: edit,
+    //     name: 'Free edit plan + bonus',
+    //     cost: 5,
+    //     checked: false
+    //   },
+    //   {
+    //     image: edit,
+    //     name: 'Free changing + bonus',
+    //     cost: 5,
+    //     checked: false
+    //   },
+    //   {
+    //     image: money_back,
+    //     name: 'Money back + bonus',
+    //     cost: 10,
+    //     checked: false
+    //   },
+    //   {
+    //     image: clock_icon,
+    //     name: 'Rough hours shipping + bonus',
+    //     cost: 10,
+    //     checked: false
+    //   }
+    // ],
     resubscribePeriod: {
       img: 'clock_icon.svg',
       name: 'want to receive a given box with',
@@ -275,8 +267,12 @@ export default {
     }
   }),
   created() {
-    const item = this.plansData.find(item => item.id === this.selectedPlanId);
-    this.tmpCurrentPlan = JSON.parse(JSON.stringify(item));
+      axios.post('/api/ChoosePlansItem/'+this.selectedPlanId ).then((response)=>{
+          this.tmpCurrentPlan = response.data.plansItem
+      }),
+      axios.post('/api/bensfits').then((response)=>{
+        this.benefits =response.data
+      })
     this.benefits.forEach((item, index) => {
       const isFind = this.tmpCurrentPlan.benefits.findIndex(currentItem => currentItem.name === item.name);
       if (isFind !== -1) {
@@ -292,7 +288,16 @@ export default {
       saveCustomPlan: 'saveCustomPlan'
     }),
     onCheckBoxChange(checked, cost) {
-      checked ? this.tmpCost += cost : this.tmpCost -= cost;
+     //  checked ? this.tmpCost += cost : this.tmpCost -= cost;
+    //     axios.post('/api/onCheckBoxChange',checked, cost).then((response)=>{
+    //             console.log(response)
+    //     })
+
+
+
+
+
+
     },
     updateCardHandler() {
       this.tmpCurrentPlan.benefits = this.benefits.filter(item => item.checked);

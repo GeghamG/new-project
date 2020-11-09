@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Products;
+use App\Product;
 class ProductsController extends Controller
 {
     public function getProduct(){
-        $product = Products::all();
+        $product = Product::all();
         return response()->json([
             'status' => 'success',
             'product' => $product

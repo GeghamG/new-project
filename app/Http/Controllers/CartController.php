@@ -4,45 +4,58 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Cart;
-use App\Products;
+use App\Product;
 use Auth;
 use App\User;
+use App\CartProduct;
 class CartController extends Controller
 {
-     public function addCart($id){
-         $product = Products::where('id', $id)->first();
-         $count = 0;
-         $cart=new Cart;
-         $cart->image = $product->image;
-         $cart->rating = $product->rating;
-         $cart->title = $product->title;
-         $cart->price = $product->price;
-         $cart->count = $count+1;
-         $cart->product_id=$id;
-         $cart->save();
-         return $this->countCart();
-     }
+    public function addCart($id){
+        $user = Auth::user();
+        $product = Product::where('id', $id)->first();
+        $count = 0;
+        $cart=new Cart;
+        $cart->user_id = $user->id;
+        $cart->price = $product->price;
+        $cart->count = $count+1;
+        $cart->save();
 
-     public function countCart(){
+        $cartProduct=new CartProduct;
+        $cartProduct->cart_id = $cart->id;
+        $cartProduct->product_id = $product->id;
+        $cartProduct->save();
+        return $this->countCart();
+    }
 
-         $carts=Cart::all();
-         $totalCart = 0;
-         $sum = 0;
+    public function countCart(){
+        $user = Auth::user();
+        $carts = Cart::where('user_id', $user->id)->get();
+
+        $totalCart = 0;
+        $sum = 0;
         foreach ($carts as  $cart){
             $totalCart+= $cart->count;
             $sum += $cart->price;
         }
-         return response()->json([
-             'status' => 'success',
-             'totalCart' => $totalCart,
-             'sum' => $sum,
-         ]);
-   }
+        return response()->json([
+            'status' => 'success',
+            'totalCart' => $totalCart,
+            'sum' => $sum,
+        ]);
+    }
 
-     public  function plansProduct(){
-         $cart = Cart::all();
-         return response()->json([
-             'product' => $cart,
-         ]);
-     }
+    public  function plansProduct(){
+        $user = Auth::user();
+        $cart = Cart::where('user_id', $user->id)->with('products')->get();
+
+        $array = [];
+         foreach ($cart  as $product){
+            foreach ( $product->products as $item){
+                   array_push($array, $item);
+            }
+         }
+         return response()->json(['status'=>'success',
+                                  'array'=>$array]);
+
+    }
 }

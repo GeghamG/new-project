@@ -17,35 +17,35 @@
       >
         Updated
       </v-chip>
-      <div class="plan-benefits-wrapper">
-        <img
-          :src="img"
-          :alt="name"
-          class="mb-4 plans-item-content__image"
-        />
-        <h3 class="plans-item-content__title">
-          {{ name }}
-        </h3>
-        <p class="plans-item-content__description">
-          {{ description }}
-        </p>
-        <p class="font__price">
-          <span class="font__price_small">$</span>{{ cost }}
-        </p>
-        <div>
-          <div
-            v-for="(item, index) in benefits"
-            :key="index"
-            class="benefits-item"
-          >
+        <div class="plan-benefits-wrapper">
             <img
-              :src="item.image"
-              :alt="name"
+                :src="img"
+                :alt="name"
+                class="mb-4 plans-item-content__image"
             />
-            <p class="plans-item-content__shipping color-yellow">
-              {{ item.name }}
+            <h3 class="plans-item-content__title">
+                {{ name }}
+            </h3>
+            <p class="plans-item-content__description">
+                {{ description }}
             </p>
-          </div>
+            <p class="font__price">
+                <span class="font__price_small">$</span>{{ cost }}
+            </p>
+            <div>
+<!--                <div-->
+<!--            v-for="(item, index) in benefits"-->
+<!--            :key="index"-->
+<!--            class="benefits-item"-->
+<!--          >-->
+<!--            <img-->
+<!--              :src="item.image"-->
+<!--              :alt="name"-->
+<!--            />-->
+<!--            <p class="plans-item-content__shipping color-yellow">-->
+<!--              {{ item.name }}-->
+<!--            </p>-->
+<!--          </div>-->
         </div>
       </div>
       <v-btn
@@ -71,61 +71,68 @@
     </div>
   </div>
 </template>
-
 <script>
 import { mapState } from 'vuex';
 import  check  from "../../../assets/plans/plans-item/check.png"
 export default {
   name: 'PlansItem',
-  props: {
-    custom: {
-      type: Boolean,
-      default: false
-    },
-    updatedPlan: {
-      type: Boolean,
-      default: false
-    },
-    id: {
-      type: String,
-      default: ''
-    },
-    img: {
-      type: String,
-      default: ''
-    },
-    name: {
-      type: String,
-      default: ''
-    },
-    description: {
-      type: String,
-      default: ''
-    },
-    cost: {
-      type: Number,
-      default: null
-    },
-    index: {
-      type: Number,
-      default: null
-    },
-    benefits: {
-      type: Array,
-      default: null
-    }
-  },
+    props:['cost', 'img', 'name', 'description', 'custom', 'updatedPlan', 'id' ],
+  // props: {
+  //   custom: {
+  //     type: Boolean,
+  //     default: false
+  //   },
+  //   updatedPlan: {
+  //     type: Boolean,
+  //     default: false
+  //   },
+  //   id: {
+  //     type: String,
+  //     default: ''
+  //   },
+  //   img: {
+  //     type: String,
+  //     default: ''
+  //   },
+  //   name: {
+  //     type: String,
+  //     default: ''
+  //   },
+  //   description: {
+  //     type: String,
+  //     default: ''
+  //   },
+  //   cost: {
+  //     type: Number,
+  //     default: null
+  //   },
+  //   index: {
+  //     type: Number,
+  //     default: null
+  //   },
+  //   benefits: {
+  //     type: Array,
+  //     default: null
+  //   }
+  // },
   data: () => ({
-
     check:check,
+    activePlanId:''
   }),
   computed: {
-    ...mapState({
-      activePlanId: state => state.activePlanId
-    }),
     current() {
       return this.activePlanId === this.id;
     }
-  }
+  },
+    methods:{
+        plansItem(){
+            axios.post('/api/plansItem').then((response)=>{
+                this.plansItemArray = response.data.plansItem
+            })
+        }
+    },
+    created() {
+      this.plansItem()
+    }
 };
 </script>

@@ -46,6 +46,15 @@
                         <v-list-item-title v-text="item.text">
                         </v-list-item-title>
                     </v-list-item>
+
+                    <v-list-item  @click="logout">
+                        <v-list-item-action>
+                            <v-icon></v-icon>
+                        </v-list-item-action>
+                        <v-list-item-title>
+                            Logout
+                        </v-list-item-title>
+                    </v-list-item>
                 </v-list-item-group>
             </v-list>
         </v-navigation-drawer>
@@ -53,6 +62,8 @@
 </template>
 
 <script>
+import router from "../../router/router";
+
 export default {
     name: "AdminHeader",
 
@@ -70,11 +81,21 @@ export default {
                 icon: "mdi-shape-outline"
             },
             {
-                text: "Products",
+                text: "Product",
                 to: "/admin/products",
                 icon: "mdi-alpha-p-circle-outline"
             }
         ]
-    })
+    }),
+    methods:{
+        logout(){
+            axios.post('/api/admin/logout').then((response)=>{
+                if(response.status === 200){
+                    localStorage.removeItem('tokenAdmin');
+                    router.push('/');
+                }
+            })
+        }
+    }
 };
 </script>

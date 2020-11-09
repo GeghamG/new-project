@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use App\Http\Resources\User as UserResource;
-
+use Auth;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -19,8 +19,9 @@ class UserController extends Controller
         return response()->json(array('success'=>true));
     }
 
-    function index(){
-
+    function userInfo(){
+        $user = Auth::user();
+        return response()->json(['status'=>'success','user'=>$user]);
     }
 
     function about(){}

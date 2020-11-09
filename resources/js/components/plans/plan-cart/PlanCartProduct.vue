@@ -1,167 +1,157 @@
 <template>
-  <div>
-
-
-    <v-row>
-      <PlansHeader
-        :title="'Your box cart'"
-        :step="step"
-        @back="$emit('back')"
-      />
-      <p class="font__description">
-        Your plan:
-      </p>
-    </v-row>
-    <PlanCartDescription
-      :name="tmpCurrentPlan.name"
-      :benefits="tmpCurrentPlan.benefits"
-      :cost="tmpCurrentPlan.cost"
-      @customize="$emit('customize')"
-    />
-
-
-
-
-
-<!--      <button @click="plans">dhsjvhdfvhdfuvhdfuhbbbbbbbbbbbbbbbbbbb</button>-->
-    <PlanCartSummary
-      :selected-plan-free-shipping-from="tmpCurrentPlan.freeShippingFrom"
-      :overal-price="overalPrice"
-    />
-    <div
-      v-if="tmpCurrentPlan.products.length"
-      class="plan-cart-products py-8"
-    >
-      <div
-        v-for="(item, index) in product"
-        :key="index"
-        class="plan-cart-product"
-      >
-        <v-row class="align-center">
-          <v-col
-            xs="12"
-            sm="6"
-            md="6"
-            lg="2"
-          >
-            <div class="plan-cart-product__image-container">
-              <img
-                :src="item.image"
-                alt="product"
-                class="plan-cart-product__image"
-              >
-            </div>
-          </v-col>
-          <v-col
-            sm="6"
-            md="6"
-            lg="6"
-            class="plan-cart-product-description-product"
-          >
-            <p class="plan-cart-product-description-product__title font__title mb-3">
-              {{ item.title }}
+    <div>
+        <v-row>
+            <PlansHeader
+                :title="'Your box cart'"
+                :step="step"
+                @back="$emit('back')"
+            />
+            <p class="font__description">
+                Your plan:
             </p>
-            <p class="plan-cart-product-description-product__description mb-0">
-<!--              {{ item.description }}-->
-            </p>
-          </v-col>
-          <v-col
-            sm="6"
-            md="6"
-            lg="2"
-          >
-            <p class="plan-cart-product__price mb-0">
-              <span
-                class="plan-cart-product__price_small mr-1"
-              >$</span>{{ item.price}}
-            </p>
-          </v-col>
-          <v-col
-            sm="6"
-            md="6"
-            lg="2"
-            class="counter-products d-flex align-center"
-          >
-            <v-btn
-              outlined
-              height="49"
-              min-width="49"
-              width="49"
-              color="#D9D9D9"
-              class="counter-btn pa-0"
-              depressed
-              @click="decrement(index)"
-            >
-              -
-            </v-btn>
-            <input
-              v-model="item.count"
-              class="plan-cart-product__amount-number mb-0"
-              type="number"
-            >
-            <v-btn
-              outlined
-              height="49"
-              min-width="49"
-              width="49"
-              color="#D9D9D9"
-              class="counter-btn pa-0"
-              depressed
-              @click="increment(index)"
-            >
-              +
-            </v-btn>
-            <v-btn
-              icon
-              class="ml-8"
-              height="49"
-              width="49"
-            >
-              <img
-                src="../../../assets/plans/benefits/close.png"
-                alt="close"
-                @click="deleteProduct(index)"
-              >
-            </v-btn>
-          </v-col>
         </v-row>
-      </div>
-    </div>
-    <div v-else>
-      <h2 class="font__title mt-4 mb-16">
-        No Products
-      </h2>
-    </div>
-    <div class="text-right my-10">
-      <span class="overall-price__text mb-1 mr-4">Overal:</span>
-      <span class="overall-price__price mb-0">
+<!--        :benefits="tmpCurrentPlan.benefits"-->
+            <PlanCartDescription
+              :name="tmpCurrentPlan.name"
+              :cost="tmpCurrentPlan.cost"
+              @customize="$emit('customize')"/>
+<!--        :overal-price="overalPrice"-->
+        <PlanCartSummary
+            :selected-plan-free-shipping-from="tmpCurrentPlan.freeShippingFrom"
+
+        />
+        <div
+            class="plan-cart-products py-8"
+            v-if="product"
+        >
+            <div
+                v-for="(item, index) in product"
+                :key="item.id"
+                class="plan-cart-product"
+            >
+                <v-row class="align-center">
+                    <v-col
+                        xs="12"
+                        sm="6"
+                        md="6"
+                        lg="2"
+                    >
+                        <div class="plan-cart-product__image-container">
+                            <img
+                                :src="item.image"
+                                alt="product"
+                                class="plan-cart-product__image"
+                            >
+                        </div>
+                    </v-col>
+                    <v-col
+                        sm="6"
+                        md="6"
+                        lg="6"
+                        class="plan-cart-product-description-product"
+                    >
+                        <p class="plan-cart-product-description-product__title font__title mb-3">
+                            {{ item.title }}
+                        </p>
+                        <p class="plan-cart-product-description-product__description mb-0">
+
+                        </p>
+                    </v-col>
+                    <v-col
+                        sm="6"
+                        md="6"
+                        lg="2"
+                    >
+                        <p class="plan-cart-product__price mb-0">
+              <span
+                  class="plan-cart-product__price_small mr-1"
+              >$</span>{{ item.price}}
+                        </p>
+                    </v-col>
+                    <v-col
+                        sm="6"
+                        md="6"
+                        lg="2"
+                        class="counter-products d-flex align-center"
+                    >
+                        <v-btn
+                            outlined
+                            height="49"
+                            min-width="49"
+                            width="49"
+                            color="#D9D9D9"
+                            class="counter-btn pa-0"
+                            depressed
+                            @click="decrement(item.count)"
+                        >
+                            -
+                        </v-btn>
+                        <input
+                            v-model="item.count"
+                            class="plan-cart-product__amount-number mb-0"
+                            type="number"
+                        >
+                        <v-btn
+                            outlined
+                            height="49"
+                            min-width="49"
+                            width="49"
+                            color="#D9D9D9"
+                            class="counter-btn pa-0"
+                            depressed
+                            @click="increment(item.count)"
+                        >
+                            +
+                        </v-btn>
+                        <v-btn
+                            icon
+                            class="ml-8"
+                            height="49"
+                            width="49"
+                        >
+                            <img
+                                src="../../../assets/plans/benefits/close.png"
+                                alt="close"
+                                @click="deleteProduct(item.id)"
+                            >
+                        </v-btn>
+                    </v-col>
+                </v-row>
+            </div>
+        </div>
+        <div v-else>
+            <h2 class="font__title mt-4 mb-16">
+                No Products
+            </h2>
+        </div>
+        <div class="text-right my-10">
+            <span class="overall-price__text mb-1 mr-4">Overal:</span>
+            <span class="overall-price__price mb-0">
         <span class="overall-price__price_small mr-1">$</span>
-        {{ overalPrice }}
+<!--        {{ overalPrice }}-->
       </span>
+        </div>
+        <div class="overall-price d-flex align-center justify-end">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores consequuntur cumque dolore earum
+                error harum laborum perspiciatis quasi
+            </p>
+            <v-btn
+                v-if="step !== 1"
+                rounded
+                outlined
+                color="#efb60f"
+                width="170"
+                height="52"
+                depressed
+                class="custom-btn custom-btn--checkout ml-auto mr-12"
+                @click="onCheckout(selectedPlanId)"
+            >
+                Checkout
+            </v-btn>
+        </div>
     </div>
-    <div class="overall-price d-flex align-center justify-end">
-
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores consequuntur cumque dolore earum
-        error harum laborum perspiciatis quasi
-      </p>
-      <v-btn
-        v-if="step !== 1"
-        rounded
-        outlined
-        color="#efb60f"
-        width="170"
-        height="52"
-        depressed
-        class="custom-btn custom-btn--checkout ml-auto mr-12"
-        @click="onCheckout"
-      >
-        Checkout
-      </v-btn>
-    </div>
-  </div>
 </template>
-
 <script>
 import { mapState, mapMutations } from 'vuex';
 import PlansHeader from "../PlansHeader";
@@ -170,76 +160,65 @@ import PlanCartSummary from "./PlanCartSummary";
 import Buttons from "../../buttons/buttons";
 
 export default {
-  name: 'PlanCartProduct',
-  components: {
-      Buttons,
-    PlansHeader,
-    PlanCartDescription,
-    PlanCartSummary
-  },
-  props: {
-    selectedPlanId: {
-      type: String,
-      default: ''
+    name: 'PlanCartProduct',
+    components: {
+        Buttons,
+        PlansHeader,
+        PlanCartDescription,
+        PlanCartSummary
     },
-    step: {
-      type: Number,
-      default: null
-    }
-  },
-  computed: {
-    ...mapState({
-      plansData: state => state.index.plansData
+
+     props: {
+         selectedPlanId: {
+             type: Number,
+             default: ''
+         },
+        step: {
+            type: Number,
+            default: null
+        }
+     },
+    computed: {
+        // overalPrice() {
+        //     return this.tmpCurrentPlan.products.reduce((sum, item) => sum + (item.count * item.price), 0).toFixed(2);
+        // }
+    },
+    data: () => ({
+        choose: false,
+        tmpCurrentPlan: {},
+        product:[]
     }),
-    overalPrice() {
-      return this.tmpCurrentPlan.products.reduce((sum, item) => sum + (item.count * item.price), 0).toFixed(2);
+    mounted() {
+           this.plansProduct()
+        axios.post('/api/ChoosePlansItem/'+this.selectedPlanId ).then((response)=>{
+                        this.tmpCurrentPlan = response.data.plansItem
+              })
+    },
+    methods: {
+        // ...mapMutations({
+        //     checkout: 'checkout'
+        // }),
+        // increment(countproduct) {
+        //     console.log(countproduct)
+        //     //this.tmpCurrentPlan.product[count].count++;
+        // },
+        // decrement(count) {
+        //     const item = this.tmpCurrentPlan.product[count];
+        //     item.count > 1 ? item.count-- : '';
+        // },
+        // deleteProduct(id) {
+        //     this.tmpCurrentPlan.products.splice(id, 1);
+        // },
+        async onCheckout(id) {
+              axios.post('/api/onCheckout/'+id).then((response)=>{
+                  this.$emit('checkout', this.tmpCurrentPlan);
+                     })
+        },
+        plansProduct(){
+            axios.post('/api/plansProduct').then((response)=>{
+                this.product = response.data.array
+            })
+        },
     }
-  },
-  data: () => ({
-    choose: false,
-    tmpCurrentPlan: {},
-    product:[]
-  }),
-  created() {
-    const item = this.plansData.find(item => item.id === this.selectedPlanId);
-    this.tmpCurrentPlan = JSON.parse(JSON.stringify(item));
-    this.plans()
-  },
-  methods: {
-    ...mapMutations({
-      checkout: 'checkout'
-    }),
-    increment(index) {
-      this.tmpCurrentPlan.products[index].count++;
-    },
-    decrement(index) {
-      const item = this.tmpCurrentPlan.products[index];
-      item.count > 1 ? item.count-- : '';
-    },
-    deleteProduct(index) {
-      this.tmpCurrentPlan.products.splice(index, 1);
-    },
-    async onCheckout() {
-      try {
-        await this.checkout(this.tmpCurrentPlan);
-        await this.$emit('checkout', this.tmpCurrentPlan);
-      } catch (e) {
-        console.error(e);
-      }
-    },
-
-
-      plans(){
-
-        axios.post('/api/plansProduct').then((response)=>{
-              this.product = response.data.product
-            console.log(this.product)
-
-          })
-      }
-
-
-
-  }
 };
 </script>

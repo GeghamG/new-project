@@ -17,7 +17,7 @@
   </section>
 
 </template>
-<!--//  esi   eti,,, chjogi axper    ira  meji  tvyalnern   vuex-ica  stanum-->
+
 <script>
 import PlansWrapper from "./plans-wrapper/PlansWrapper";
 import EditPlan from "../editPlan/EditPlan";
@@ -34,7 +34,7 @@ export default {
   },
   data: () => ({
     selectedComponent: 'PlansWrapper',
-    selectedPlanId: null,
+    selectedPlanId:'',
     planChecked: false,
     timer: ''
   }),

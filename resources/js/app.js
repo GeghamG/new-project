@@ -15,6 +15,15 @@ axios.interceptors.request.use(function(config) {
     return config;
 });
 
+
+axios.interceptors.request.use(function(config) {
+    const tokenAdmin = localStorage.getItem('tokenAdmin');
+    if (tokenAdmin) {
+        config.headers.Authorization = `Bearer ${tokenAdmin}`;
+    }
+    return config;
+});
+
 new Vue({
     router,
     vuetify:Vuetify,

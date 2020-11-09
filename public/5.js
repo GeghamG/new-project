@@ -9,6 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _router_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../router/router */ "./resources/js/router/router.js");
 //
 //
 //
@@ -63,6 +64,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AdminHeader",
   data: function data() {
@@ -77,11 +88,21 @@ __webpack_require__.r(__webpack_exports__);
         to: "/admin/categories",
         icon: "mdi-shape-outline"
       }, {
-        text: "Products",
+        text: "Product",
         to: "/admin/products",
         icon: "mdi-alpha-p-circle-outline"
       }]
     };
+  },
+  methods: {
+    logout: function logout() {
+      axios.post('/api/admin/logout').then(function (response) {
+        if (response.status === 200) {
+          localStorage.removeItem('tokenAdmin');
+          _router_router__WEBPACK_IMPORTED_MODULE_0__["default"].push('/');
+        }
+      });
+    }
   }
 });
 
@@ -198,29 +219,46 @@ var render = function() {
               _c(
                 "v-list-item-group",
                 { attrs: { color: "primary" } },
-                _vm._l(_vm.items, function(item) {
-                  return _c(
+                [
+                  _vm._l(_vm.items, function(item) {
+                    return _c(
+                      "v-list-item",
+                      { key: item.text, attrs: { to: item.to } },
+                      [
+                        _c(
+                          "v-list-item-action",
+                          [
+                            _c("v-icon", {
+                              domProps: { textContent: _vm._s(item.icon) }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("v-list-item-title", {
+                          domProps: { textContent: _vm._s(item.text) }
+                        })
+                      ],
+                      1
+                    )
+                  }),
+                  _vm._v(" "),
+                  _c(
                     "v-list-item",
-                    { key: item.text, attrs: { to: item.to } },
+                    { on: { click: _vm.logout } },
                     [
-                      _c(
-                        "v-list-item-action",
-                        [
-                          _c("v-icon", {
-                            domProps: { textContent: _vm._s(item.icon) }
-                          })
-                        ],
-                        1
-                      ),
+                      _c("v-list-item-action", [_c("v-icon")], 1),
                       _vm._v(" "),
-                      _c("v-list-item-title", {
-                        domProps: { textContent: _vm._s(item.text) }
-                      })
+                      _c("v-list-item-title", [
+                        _vm._v(
+                          "\n                        Logout\n                    "
+                        )
+                      ])
                     ],
                     1
                   )
-                }),
-                1
+                ],
+                2
               )
             ],
             1

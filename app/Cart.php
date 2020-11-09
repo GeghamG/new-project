@@ -3,15 +3,23 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Products;
+use App\Product;
 class Cart extends Model
 {
-    protected $table    = 'cart';
-    protected $fillable = [ 'product_id', 'count', 'cart_id', 'price'];
+  protected $table    = 'cart';
+    protected $fillable = [ 'count', 'user_id', 'price'];
 
-    public function product(){
-        return $this->hasMany("App\Products");
+
+
+    public function products() {
+        return $this->belongsToMany(
+            Product::class,
+            'cart_products',
+            'cart_id',
+            'product_id');
+
     }
+
 }
 
 
