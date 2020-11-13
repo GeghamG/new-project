@@ -8,7 +8,7 @@
     <v-row>
       <v-col sm="3">
         <img
-          src="../../assets/editPlanImage.svg"
+          :src="tmpCurrentPlan.img"
           alt="edit plan image"
         />
       </v-col>
@@ -29,22 +29,13 @@
           >
             <span class="plan-title">{{ tmpCurrentPlan.name }}</span><span
               class="font__price"
-            ><sub>$</sub>{{ tmpCurrentPlan.cost }}</span>
+            ><sub>$</sub>{{ cost }}</span>
           </v-col>
           <v-col
             xs="12"
             sm="6"
           >
             <v-row>
-              <v-col
-                sm="7"
-              >
-                <a
-                  href="#"
-                  class="yellow-link"
-                  @click="saveAsCustom"
-                >Save as custom box</a>
-              </v-col>
               <v-col
                 sm="5"
               >
@@ -67,6 +58,7 @@
           </v-col>
           <v-col sm="6"></v-col>
         </v-row>
+
         <v-row>
           <v-col
             sm="10"
@@ -89,11 +81,12 @@
               <v-col
                 sm="1"
               >
-
                 <v-checkbox
-                  v-model="item.checked"
+                  v-model="selected"
                   color="#EFB60F"
-                  @change="onCheckBoxChange(item.checked, item.cost)"
+                  :value="item.id"
+
+                  @change="onCheckBoxChange(tmpCurrentPlan.id)"
                 ></v-checkbox>
               </v-col>
               <v-col sm="2">
@@ -122,13 +115,14 @@
               </v-col>
               <v-col sm="3">
                 <v-select
-                  v-model="resubscribePeriodValue"
+                  v-model="handler.resubscribePeriodValue"
                   outlined
                   width="162"
                   height="40"
                   :items="resubscribePeriod.periods"
                 ></v-select>
               </v-col>
+
               <v-col sm="4"></v-col>
             </v-row>
           </v-col>
@@ -137,7 +131,7 @@
     </v-row>
     <div class="d-flex justify-end align-center my-7">
       <span class="mr-2">Updated price:</span>
-      <span class="font__price"><sub>$</sub>{{ tmpCost }}</span>
+      <span class="font__price"><sub>$</sub>{{ handler.tmpCost }}</span>
     </div>
     <v-row>
       <v-btn
@@ -149,7 +143,7 @@
         height="52"
         depressed
         class="custom-btn custom-btn--checkout ml-auto"
-        @click="updateCardHandler"
+        @click="updateCardHandler(tmpCurrentPlan.id)"
       >
         Save Changes
       </v-btn>
@@ -171,12 +165,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex';
-import PlansHeader from "../plans/PlansHeader";
-import box from "../../assets/plans/benefits/box.svg"
-import  edit from "../../assets/plans/benefits/edit.svg";
-import  money_back  from '../../assets/plans/benefits/money_back.svg'
-import clock_icon from  "../../assets/plans/benefits/clock_icon.svg"
+import PlansHeader from "../plans/PlansHeader";;
 export default {
   name: 'EditPlan',
   components: {
@@ -193,73 +182,14 @@ export default {
     }
   },
   data: () => ({
-    tmpCost: null,
+      handler: {
+          tmpCost: '',
+          resubscribePeriodValue: '',
+      },
+    cost:0,
     tmpCurrentPlan: {},
-      checked: false,
-    resubscribePeriodValue: '',
-      benefits:[],
-    // benefits: [
-    //   {
-    //     image: box,
-    //     name: 'Free shipping',
-    //     cost: 20,
-    //     checked: false
-    //   },
-    //   {
-    //     image: edit,
-    //     name: 'Free edit plan',
-    //     cost: 20,
-    //     checked: false
-    //   },
-    //   {
-    //     image: edit,
-    //     name: 'Free changing',
-    //     cost: 29,
-    //     checked: false
-    //   },
-    //   {
-    //     image: money_back,
-    //     name: 'Money back',
-    //     cost: 3,
-    //     checked: false
-    //   },
-    //   {
-    //     image: clock_icon,
-    //     name: 'Rough hours shipping',
-    //     cost: 3,
-    //     checked: false
-    //   },
-    //   {
-    //     image: box,
-    //     name: 'Free shipping + bonus',
-    //     cost: 4,
-    //     checked: false
-    //   },
-    //   {
-    //     image: edit,
-    //     name: 'Free edit plan + bonus',
-    //     cost: 5,
-    //     checked: false
-    //   },
-    //   {
-    //     image: edit,
-    //     name: 'Free changing + bonus',
-    //     cost: 5,
-    //     checked: false
-    //   },
-    //   {
-    //     image: money_back,
-    //     name: 'Money back + bonus',
-    //     cost: 10,
-    //     checked: false
-    //   },
-    //   {
-    //     image: clock_icon,
-    //     name: 'Rough hours shipping + bonus',
-    //     cost: 10,
-    //     checked: false
-    //   }
-    // ],
+    selected:[],
+    benefits:[],
     resubscribePeriod: {
       img: 'clock_icon.svg',
       name: 'want to receive a given box with',
@@ -271,52 +201,24 @@ export default {
           this.tmpCurrentPlan = response.data.plansItem
       }),
       axios.post('/api/bensfits').then((response)=>{
-        this.benefits =response.data
+        this.benefits = response.data
       })
-    this.benefits.forEach((item, index) => {
-      const isFind = this.tmpCurrentPlan.benefits.findIndex(currentItem => currentItem.name === item.name);
-      if (isFind !== -1) {
-        this.benefits[index].checked = true;
-      }
-    });
-    this.resubscribePeriodValue = this.tmpCurrentPlan.resubscribePeriod;
-    this.tmpCost = this.tmpCurrentPlan.cost;
+      axios.post('/api/plansBenefits/'+this.selectedPlanId).then((response)=>{
+          this.cost = response.data.costSum
+      })
   },
   methods: {
-    ...mapMutations({
-      updateCard: 'updateCard',
-      saveCustomPlan: 'saveCustomPlan'
-    }),
-    onCheckBoxChange(checked, cost) {
-     //  checked ? this.tmpCost += cost : this.tmpCost -= cost;
-    //     axios.post('/api/onCheckBoxChange',checked, cost).then((response)=>{
-    //             console.log(response)
-    //     })
-
-
-
-
-
-
+    onCheckBoxChange(id) {
+        axios.post('/api/onCheckBoxChange/'+id, this.selected).then((response)=>{
+          this.handler.tmpCost = response.data.costSum
+        })
     },
-    updateCardHandler() {
-      this.tmpCurrentPlan.benefits = this.benefits.filter(item => item.checked);
-      this.tmpCurrentPlan.cost = this.tmpCost;
-      this.tmpCurrentPlan.resubscribePeriod = this.resubscribePeriodValue;
-      this.updateCard(this.tmpCurrentPlan);
-      this.$emit('save-changes');
-    },
-    saveAsCustom() {
-      this.tmpCurrentPlan.benefits = this.benefits.filter(item => item.checked);
-      this.tmpCurrentPlan.cost = this.tmpCost;
-      this.tmpCurrentPlan.resubscribePeriod = this.resubscribePeriodValue;
-      this.tmpCurrentPlan.id += '1';
-      this.saveCustomPlan(this.tmpCurrentPlan);
-      this.$emit('save-changes');
-    }
+    updateCardHandler(id) {
+        axios.post('/api/updateCardHandler/'+id, this.handler).then((response)=>{
+            this.$emit('back');
+        })
+     },
   }
 };
 </script>
 
-<style>
-</style>

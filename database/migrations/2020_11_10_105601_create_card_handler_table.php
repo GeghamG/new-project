@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePlansBenefitsTable extends Migration
+class CreateCardHandlerTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreatePlansBenefitsTable extends Migration
      */
     public function up()
     {
-        Schema::create('plans_benifits', function (Blueprint $table) {
+        Schema::create('cardHandler', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('plans_id')->unsigned();
+            $table->integer('plans_id')->unsigned()->nullable();
             $table->foreign('plans_id')->references('id')->on('plans_item')->onDelete('cascade');
-            $table->integer('benefits_id')->unsigned();
-            $table->foreign('benefits_id')->references('id')->on('benefits')->onDelete('cascade');;
+            $table->integer('costSum');
+            $table->string('period');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreatePlansBenefitsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('plans_benifits');
+        Schema::dropIfExists('cardHandler');
     }
 }

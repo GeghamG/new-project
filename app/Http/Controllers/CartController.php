@@ -30,7 +30,6 @@ class CartController extends Controller
     public function countCart(){
         $user = Auth::user();
         $carts = Cart::where('user_id', $user->id)->get();
-
         $totalCart = 0;
         $sum = 0;
         foreach ($carts as  $cart){
@@ -43,7 +42,6 @@ class CartController extends Controller
             'sum' => $sum,
         ]);
     }
-
     public  function plansProduct(){
         $user = Auth::user();
         $cart = Cart::where('user_id', $user->id)->with('products')->get();
@@ -57,5 +55,10 @@ class CartController extends Controller
          return response()->json(['status'=>'success',
                                   'array'=>$array]);
 
+    }
+    public function deleteCartProduct($id){
+        $user = Auth::user();
+        $cartProduct = CartProduct::where('product_id', $id)->first();
+        $cartProduct->delete();
     }
 }

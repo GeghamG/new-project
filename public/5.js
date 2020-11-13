@@ -93,17 +93,17 @@ __webpack_require__.r(__webpack_exports__);
         icon: "mdi-alpha-p-circle-outline"
       }]
     };
-  },
-  methods: {
-    logout: function logout() {
-      axios.post('/api/admin/logout').then(function (response) {
-        if (response.status === 200) {
-          localStorage.removeItem('tokenAdmin');
-          _router_router__WEBPACK_IMPORTED_MODULE_0__["default"].push('/');
-        }
-      });
-    }
-  }
+  } // methods:{
+  //     logout(){
+  //         axios.post('/api/admin/logout').then((response)=>{
+  //             if(response.status === 200){
+  //                 localStorage.removeItem('tokenAdmin');
+  //                 router.push('/');
+  //             }
+  //         })
+  //     }
+  // }
+
 });
 
 /***/ }),
@@ -160,7 +160,9 @@ var render = function() {
             attrs: { vertical: "", inset: "" }
           }),
           _vm._v(" "),
-          _c("v-toolbar-title", [_vm._v("\n            Admin Panel\n        ")])
+          _c("v-toolbar-title", [
+            _vm._v("\n                Admin Panel\n            ")
+          ])
         ],
         1
       ),
@@ -219,46 +221,29 @@ var render = function() {
               _c(
                 "v-list-item-group",
                 { attrs: { color: "primary" } },
-                [
-                  _vm._l(_vm.items, function(item) {
-                    return _c(
-                      "v-list-item",
-                      { key: item.text, attrs: { to: item.to } },
-                      [
-                        _c(
-                          "v-list-item-action",
-                          [
-                            _c("v-icon", {
-                              domProps: { textContent: _vm._s(item.icon) }
-                            })
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c("v-list-item-title", {
-                          domProps: { textContent: _vm._s(item.text) }
-                        })
-                      ],
-                      1
-                    )
-                  }),
-                  _vm._v(" "),
-                  _c(
+                _vm._l(_vm.items, function(item) {
+                  return _c(
                     "v-list-item",
-                    { on: { click: _vm.logout } },
+                    { key: item.text, attrs: { to: item.to } },
                     [
-                      _c("v-list-item-action", [_c("v-icon")], 1),
+                      _c(
+                        "v-list-item-action",
+                        [
+                          _c("v-icon", {
+                            domProps: { textContent: _vm._s(item.icon) }
+                          })
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
-                      _c("v-list-item-title", [
-                        _vm._v(
-                          "\n                        Logout\n                    "
-                        )
-                      ])
+                      _c("v-list-item-title", {
+                        domProps: { textContent: _vm._s(item.text) }
+                      })
                     ],
                     1
                   )
-                ],
-                2
+                }),
+                1
               )
             ],
             1

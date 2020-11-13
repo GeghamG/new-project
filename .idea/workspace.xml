@@ -2,58 +2,35 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5e056b16-d7e8-4041-9340-0d7cd6e6d2e5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Product.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/pages/adminAuth/Login.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/store/modules/plans.store.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/store/modules/plans/getters.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/store/modules/plans/mutations.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/store/modules/plans/state.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/store/modules/product.store.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/store/modules/product/actions.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/store/modules/product/getters.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/store/modules/product/mutations.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/store/modules/product/state.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Cart.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Cart.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Benefits.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Benefits.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BenefitsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BenefitsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CartController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CartController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PlansItemController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PlansItemController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Football.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Product.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Songs.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Youtube.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Products.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/auth.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_11_05_080639_create_products_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_11_05_080639_create_products_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_11_05_094538_create_cart_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_11_05_094538_create_cart_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/PlansBenifits.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/PlansBenifits.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/PlansItem.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/PlansItem.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_11_09_064815_create_plans_item_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_11_09_064815_create_plans_item_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_11_09_113218_create_plans_benefits_table.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/seeds/ProductsSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/ProductsSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/0.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/0.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/10.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/10.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/5.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/5.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/adminCategories.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/adminCategories.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/adminHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/adminHeader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/adminProducts.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/adminProducts.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/AppHeader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/AppHeader.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/admin/Header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/admin/Header.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/editPlan/EditPlan.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/editPlan/EditPlan.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/home/Testimonials.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/home/Testimonials.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/plans/Checkout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/plans/Checkout.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/plans/Plans.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/plans/Plans.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/plans/plan-cart/PlanCartDescription.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/plans/plan-cart/PlanCartDescription.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/plans/plan-cart/PlanCartProduct.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/plans/plan-cart/PlanCartProduct.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/plans/plans-wrapper/PlansItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/plans/plans-wrapper/PlansItem.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/plans/plans-wrapper/PlansWrapper.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/plans/plans-wrapper/PlansWrapper.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/router/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/router/router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/store/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/store/modules/user.store.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/store/modules/user.store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/store/modules/user/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/store/modules/user/actions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/store/product.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/store/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/store/store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/router/index.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -76,9 +53,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="PackageJsonUpdateNotifier">
-    <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -288,6 +262,16 @@
       <workItem from="1604857216000" duration="11000" />
       <workItem from="1604857238956" duration="12372000" />
       <workItem from="1604903496858" duration="26084000" />
+      <workItem from="1604932791354" duration="16000" />
+      <workItem from="1604932813147" duration="1804000" />
+      <workItem from="1604988781216" duration="25792000" />
+      <workItem from="1605039963171" duration="84000" />
+      <workItem from="1605040053048" duration="7380000" />
+      <workItem from="1605077005526" duration="11022000" />
+      <workItem from="1605095257790" duration="8777000" />
+      <workItem from="1605161192337" duration="21305000" />
+      <workItem from="1605246662215" duration="8181000" />
+      <workItem from="1605264754412" duration="766000" />
     </task>
     <servers />
   </component>
@@ -295,6 +279,10 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="476" y="232" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1605166105183">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state x="476" y="232" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1440.860@0.0.1440.860" timestamp="1605166105183" />
     <state x="369" y="163" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1604751842769">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
@@ -303,31 +291,32 @@
       <screen x="0" y="0" width="1440" height="860" />
     </state>
     <state x="450" y="177" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1440.860@0.0.1440.860" timestamp="1600932099530" />
-    <state x="427" y="157" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1604862516175">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="450" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1605101616555">
+      <screen x="0" y="0" width="1440" height="860" />
     </state>
     <state x="427" y="157" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1604862516175" />
-    <state x="450" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1440.860@0.0.1440.860" timestamp="1600265242836" />
-    <state x="431" y="196" key="FileChooserDialogImpl" timestamp="1604857225032">
+    <state x="450" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1440.860@0.0.1440.860" timestamp="1605101616555" />
+    <state x="431" y="196" key="FileChooserDialogImpl" timestamp="1605040047223">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="431" y="196" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1604857225032" />
-    <state x="454" y="232" key="FileChooserDialogImpl/0.0.1440.860@0.0.1440.860" timestamp="1604736611161" />
+    <state x="431" y="196" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1605040047223" />
+    <state x="454" y="232" key="FileChooserDialogImpl/0.0.1440.860@0.0.1440.860" timestamp="1604932806075" />
     <state x="514" y="153" key="NewPhpClassDialog" timestamp="1604734570441">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
     <state x="514" y="153" key="NewPhpClassDialog/0.0.1440.860@0.0.1440.860" timestamp="1604734570441" />
-    <state x="92" y="92" width="1256" height="676" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1599474299935">
-      <screen x="0" y="0" width="1440" height="860" />
+    <state x="92" y="92" width="1256" height="676" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1605045686266">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="92" y="92" width="1256" height="676" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1440.860@0.0.1440.860" timestamp="1599474299935" />
     <state x="426" y="35" width="585" height="592" key="find.popup" timestamp="1604918576386">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
     <state x="426" y="35" width="585" height="592" key="find.popup/0.0.1440.860@0.0.1440.860" timestamp="1604918576386" />
-    <state x="383" y="181" width="672" height="678" key="search.everywhere.popup" timestamp="1604927235792">
-      <screen x="0" y="0" width="1440" height="860" />
+    <state x="363" y="153" width="672" height="574" key="search.everywhere.popup" timestamp="1605043481272">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state x="363" y="153" width="672" height="574" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1605043481272" />
     <state x="383" y="181" width="672" height="678" key="search.everywhere.popup/0.0.1440.860@0.0.1440.860" timestamp="1604927235792" />
   </component>
   <component name="XDebuggerManager">
@@ -337,6 +326,11 @@
           <url>file://$PROJECT_DIR$/resources/js/components/Navbar.vue</url>
           <line>44</line>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/resources/js/components/plans/plans-wrapper/PlansItem.vue</url>
+          <line>49</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class PlansItem extends Model
@@ -17,4 +18,14 @@ class PlansItem extends Model
             'plans_id',
             'benefits_id');
     }
+
+    public function user()
+    {
+        return $this->hasMany(User::class);
+    }
+
+//    public function benefits()
+//    {
+//        return $this->hasMany(Benefits::class,);
+//    }
 }

@@ -14,7 +14,7 @@
                 >
                     <div class="quotation-holder">
                         <v-img
-                            src="../../assets/quotation-marks.png"
+                            :src="quotation"
                             width="70"
                         ></v-img>
                     </div>
@@ -48,6 +48,7 @@ export default {
     name: "Testimonials",
 
     data: () => ({
+        quotation:require('../../assets/quotation-marks.png'),
         testimonials: [
             {
                 id: 1,

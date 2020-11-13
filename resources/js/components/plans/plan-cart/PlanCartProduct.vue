@@ -10,15 +10,12 @@
                 Your plan:
             </p>
         </v-row>
-<!--        :benefits="tmpCurrentPlan.benefits"-->
             <PlanCartDescription
               :name="tmpCurrentPlan.name"
-              :cost="tmpCurrentPlan.cost"
+              :cost="cost"
               @customize="$emit('customize')"/>
-<!--        :overal-price="overalPrice"-->
         <PlanCartSummary
             :selected-plan-free-shipping-from="tmpCurrentPlan.freeShippingFrom"
-
         />
         <div
             class="plan-cart-products py-8"
@@ -82,7 +79,7 @@
                             color="#D9D9D9"
                             class="counter-btn pa-0"
                             depressed
-                            @click="decrement(item.count)"
+                            @click="decrement(item)"
                         >
                             -
                         </v-btn>
@@ -99,7 +96,7 @@
                             color="#D9D9D9"
                             class="counter-btn pa-0"
                             depressed
-                            @click="increment(item.count)"
+                            @click="increment(item)"
                         >
                             +
                         </v-btn>
@@ -128,7 +125,7 @@
             <span class="overall-price__text mb-1 mr-4">Overal:</span>
             <span class="overall-price__price mb-0">
         <span class="overall-price__price_small mr-1">$</span>
-<!--        {{ overalPrice }}-->
+        {{ overalPrice }}
       </span>
         </div>
         <div class="overall-price d-flex align-center justify-end">
@@ -149,11 +146,22 @@
             >
                 Checkout
             </v-btn>
+            <v-btn
+                rounded
+                outlined
+                color="#efb60f"
+                width="170"
+                height="52"
+                depressed
+                class="custom-btn custom-btn--checkout ml-auto mr-12"
+                @click="update(selectedPlanId)"
+            >
+                Update Plan
+            </v-btn>
         </div>
     </div>
 </template>
 <script>
-import { mapState, mapMutations } from 'vuex';
 import PlansHeader from "../PlansHeader";
 import PlanCartDescription from "./PlanCartDescription";
 import PlanCartSummary from "./PlanCartSummary";
@@ -179,39 +187,48 @@ export default {
         }
      },
     computed: {
-        // overalPrice() {
-        //     return this.tmpCurrentPlan.products.reduce((sum, item) => sum + (item.count * item.price), 0).toFixed(2);
-        // }
+        overalPrice() {
+            return this.product.reduce((sum, item) => sum + (item.count * item.price), 0)
+        }
     },
     data: () => ({
         choose: false,
         tmpCurrentPlan: {},
-        product:[]
+        product:[],
+        cost:0,
+        total:0
     }),
     mounted() {
            this.plansProduct()
         axios.post('/api/ChoosePlansItem/'+this.selectedPlanId ).then((response)=>{
                         this.tmpCurrentPlan = response.data.plansItem
-              })
+              }),
+            axios.post('/api/plansBenefits/'+this.selectedPlanId).then((response)=>{
+                this.cost = response.data.costSum
+            })
     },
     methods: {
-        // ...mapMutations({
-        //     checkout: 'checkout'
-        // }),
-        // increment(countproduct) {
-        //     console.log(countproduct)
-        //     //this.tmpCurrentPlan.product[count].count++;
-        // },
-        // decrement(count) {
-        //     const item = this.tmpCurrentPlan.product[count];
-        //     item.count > 1 ? item.count-- : '';
-        // },
-        // deleteProduct(id) {
-        //     this.tmpCurrentPlan.products.splice(id, 1);
-        // },
-        async onCheckout(id) {
+        increment(item) {
+            if (this.product.find(p => p.id === item.id)) {
+                this.total = item.count++
+            }
+        },
+
+        decrement(item) {
+            if (this.product.find(p => p.id === item.id)) {
+                this.total = item.count > 1 ? item.count-- : '';
+            }
+        },
+
+        async deleteProduct(id) {
+          await axios.delete('/api/deleteCartProduct/'+id).then((response)=>{
+              let i = this.product.map(item => item.id).indexOf(id);
+              this.product.splice(i, 1)
+            })
+        },
+     onCheckout(id) {
               axios.post('/api/onCheckout/'+id).then((response)=>{
-                  this.$emit('checkout', this.tmpCurrentPlan);
+                  this.$emit('back',response.data.plansItem);
                      })
         },
         plansProduct(){
@@ -219,6 +236,12 @@ export default {
                 this.product = response.data.array
             })
         },
+        update(id){
+            axios.post('/api/updatePlan/'+id).then((response)=>{
+                // this.product = response.data.array
+                this.$emit('back');
+            })
+        }
     }
 };
 </script>

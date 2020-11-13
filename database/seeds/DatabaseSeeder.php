@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CreateAdminSeeder::class);
         $this->call(PlansItemSeeder::class);
         $this->call(BenefitsSeeder::class);
+
     }
 }

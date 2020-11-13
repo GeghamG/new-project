@@ -17,4 +17,8 @@ class Benefits extends Model
             'plans_id');
 
     }
+//    public function plans()
+//    {
+//        return $this->belongsTo(PlansItem::class);
+//    }
 }

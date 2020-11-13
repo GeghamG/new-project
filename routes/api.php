@@ -23,6 +23,7 @@ Route::group(
     function ($router) {
     Route::post('logout', 'Auth\AuthController@logout');
     Route::post('getProduct', 'ProductsController@getProduct');
+    Route::delete('deleteCartProduct/{id}', 'CartController@deleteCartProduct');
     Route::post('addCart/{id}', 'CartController@addCart');
     Route::post('countCart', 'CartController@countCart');
     Route::post('plansProduct', 'CartController@plansProduct');
@@ -32,6 +33,11 @@ Route::group(
     Route::post('onCheckout/{id}', 'PlansItemController@onCheckout');
     Route::post('checked', 'PlansItemController@checked');
     Route::post('bensfits', 'BenefitsController@bensfits');
+    Route::post('onCheckBoxChange/{id}', 'BenefitsController@onCheckBoxChange');
+    Route::post('updateCardHandler/{id}', 'PlansItemController@updateCardHandler');
+    Route::post('plansBenefits/{id}', 'PlansItemController@plansBenefits');
+    Route::post('updatePlan/{id}', 'PlansItemController@updatePlan');
     //Admin
     Route::post('admin/logout', 'AdminController@logout');
+
 });

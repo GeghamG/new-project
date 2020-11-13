@@ -11,12 +11,42 @@ class ProductsSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('product')->insert([
-            'title'=>'product',
-            'price'=>'50',
+        DB::table('product')->insert(
+
+          $product = [
+            [
+            'id'=>1,
+            'title'=>'product1',
+            'price'=>'150',
             'rating'=>'2',
-            'count' =>'7',
+            'count' =>'5',
             'image'=>'4.jpg'
-        ]);
+            ],
+            [
+                'id'=>2,
+                'title'=>'product2',
+                'price'=>'50',
+                'rating'=>'2',
+                'count' =>'11',
+                'image'=>'5.jpg'
+            ],
+            [
+                'id'=>3,
+                'title'=>'product3',
+                'price'=>'157',
+                'rating'=>'2',
+                'count' =>'7',
+                'image'=>'6.jpg'
+            ],
+            [
+                'id'=>4,
+                'title'=>'product4',
+             'price'=>'318',
+             'rating'=>'2',
+             'count' =>'3',
+             'image'=>'7.jpg'
+            ]
+        ]
+        );
     }
 }

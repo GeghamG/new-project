@@ -23,12 +23,12 @@
             :key="item.id"
             class="d-flex align-center mb-4"
           >
-            <img
-              :src="item.image"
-              :alt="item.name"
-            >
+<!--            <img-->
+<!--              :src="item.image"-->
+<!--              :alt="item.name"-->
+<!--            >-->
             <p class="plan-cart-description__paragraph mr-4 mb-0 ml-4">
-              {{ item.name }}
+              {{ item }}
             </p>
           </div>
         </div>
@@ -57,15 +57,16 @@ export default {
       type: String,
       default: ''
     },
-    benefits: {
-      type: Array,
-      default: () => []
-    },
+    // benefits: {
+    //   type: Array,
+    //   default: () => []
+    // },
     cost: {
       type: Number,
       default: null
-    }
-  }
+    },
+    benefits:[],
+  },
 
 };
 </script>

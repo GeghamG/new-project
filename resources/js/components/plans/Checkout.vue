@@ -5,7 +5,7 @@
     </h2>
     <img
       :src = "checked.img"
-      alt=""
+      :alt="checked.name"
     >
     <p class="plan-checkout__text mt-14">
       Your order was checked out successfully!
@@ -29,19 +29,23 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
-
 export default {
   name: 'Checkout',
   data: () => ({
     hardDate: '91203902',
     checked:{}
   }),
-
     mounted() {
-      axios.post('/api/checked').then((response)=>{
-          this.checked = response.data
-      })
+      // axios.post('/api/checked').then((response)=>{
+      //     this.checked = response.data
+      // })
+      // this.$root.$on('plansItemArray', function (plansItemArray) {
+      //     console.log(plansItemArray);
+      // })
+            axios.post('/api/plansItem').then((response)=>{
+                this.checked = response.data.plansItem
+                this.$emit('checkout');
+            })
     }
 };
 </script>

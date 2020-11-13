@@ -2416,257 +2416,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -2702,16 +2451,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     search: function search() {
       alert(5);
     },
-    // signOut() {
-    //     localStorage.removeItem("token");
-    //     this.removeAuth();
-    //     if (this.$route.fullPath !== "/") this.$router.push("/");
-    // },
     logout: function logout() {
       axios.post('/api/logout').then(function (response) {
         if (response.status === 200) {
           localStorage.removeItem('token');
-          _router_router__WEBPACK_IMPORTED_MODULE_2__["default"].push('/');
+          _router_router__WEBPACK_IMPORTED_MODULE_2__["default"].push('/login');
         }
       });
     },
@@ -46574,7 +46318,7 @@ var render = function() {
           _vm._v(" "),
           _c("v-divider", { attrs: { vertical: "" } }),
           _vm._v(" "),
-          _vm.users.id
+          _vm.users
             ? [
                 _c(
                   "v-menu",
@@ -46609,9 +46353,7 @@ var render = function() {
                                     },
                                     [
                                       _vm._v(
-                                        "\n                            " +
-                                          _vm._s(_vm.users.email[0]) +
-                                          "\n                        "
+                                        "\n                        out\n                        "
                                       )
                                     ]
                                   )
@@ -46623,7 +46365,7 @@ var render = function() {
                       ],
                       null,
                       false,
-                      3819906542
+                      1595340731
                     )
                   },
                   [
@@ -46817,7 +46559,7 @@ var render = function() {
                   _c("v-img", {
                     staticStyle: { margin: "auto" },
                     attrs: {
-                      src: "../assets/logo.png",
+                      src: "logo.png",
                       width: "207",
                       height: "65",
                       contain: ""
@@ -109507,8 +109249,8 @@ var opts = {}; // export default new Vuetify(opts)
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xamppp\htdocs\Shop test\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xamppp\htdocs\Shop test\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xamppp\htdocs\new project\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xamppp\htdocs\new project\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

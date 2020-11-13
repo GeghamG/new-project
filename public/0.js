@@ -9,28 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _plans_PlansHeader__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../plans/PlansHeader */ "./resources/js/components/plans/PlansHeader.vue");
-/* harmony import */ var _assets_plans_benefits_box_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../assets/plans/benefits/box.svg */ "./resources/js/assets/plans/benefits/box.svg");
-/* harmony import */ var _assets_plans_benefits_box_svg__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_assets_plans_benefits_box_svg__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _assets_plans_benefits_edit_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../assets/plans/benefits/edit.svg */ "./resources/js/assets/plans/benefits/edit.svg");
-/* harmony import */ var _assets_plans_benefits_edit_svg__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_assets_plans_benefits_edit_svg__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _assets_plans_benefits_money_back_svg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../assets/plans/benefits/money_back.svg */ "./resources/js/assets/plans/benefits/money_back.svg");
-/* harmony import */ var _assets_plans_benefits_money_back_svg__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_assets_plans_benefits_money_back_svg__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _assets_plans_benefits_clock_icon_svg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../assets/plans/benefits/clock_icon.svg */ "./resources/js/assets/plans/benefits/clock_icon.svg");
-/* harmony import */ var _assets_plans_benefits_clock_icon_svg__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_assets_plans_benefits_clock_icon_svg__WEBPACK_IMPORTED_MODULE_5__);
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
-//
-//
-//
+/* harmony import */ var _plans_PlansHeader__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../plans/PlansHeader */ "./resources/js/components/plans/PlansHeader.vue");
 //
 //
 //
@@ -198,15 +177,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 
-
-
-
-
-
+;
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'EditPlan',
   components: {
-    PlansHeader: _plans_PlansHeader__WEBPACK_IMPORTED_MODULE_1__["default"]
+    PlansHeader: _plans_PlansHeader__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   props: {
     step: {
@@ -220,73 +195,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
-      tmpCost: null,
+      handler: {
+        tmpCost: '',
+        resubscribePeriodValue: ''
+      },
+      cost: 0,
       tmpCurrentPlan: {},
-      checked: false,
-      resubscribePeriodValue: '',
+      selected: [],
       benefits: [],
-      // benefits: [
-      //   {
-      //     image: box,
-      //     name: 'Free shipping',
-      //     cost: 20,
-      //     checked: false
-      //   },
-      //   {
-      //     image: edit,
-      //     name: 'Free edit plan',
-      //     cost: 20,
-      //     checked: false
-      //   },
-      //   {
-      //     image: edit,
-      //     name: 'Free changing',
-      //     cost: 29,
-      //     checked: false
-      //   },
-      //   {
-      //     image: money_back,
-      //     name: 'Money back',
-      //     cost: 3,
-      //     checked: false
-      //   },
-      //   {
-      //     image: clock_icon,
-      //     name: 'Rough hours shipping',
-      //     cost: 3,
-      //     checked: false
-      //   },
-      //   {
-      //     image: box,
-      //     name: 'Free shipping + bonus',
-      //     cost: 4,
-      //     checked: false
-      //   },
-      //   {
-      //     image: edit,
-      //     name: 'Free edit plan + bonus',
-      //     cost: 5,
-      //     checked: false
-      //   },
-      //   {
-      //     image: edit,
-      //     name: 'Free changing + bonus',
-      //     cost: 5,
-      //     checked: false
-      //   },
-      //   {
-      //     image: money_back,
-      //     name: 'Money back + bonus',
-      //     cost: 10,
-      //     checked: false
-      //   },
-      //   {
-      //     image: clock_icon,
-      //     name: 'Rough hours shipping + bonus',
-      //     cost: 10,
-      //     checked: false
-      //   }
-      // ],
       resubscribePeriod: {
         img: 'clock_icon.svg',
         name: 'want to receive a given box with',
@@ -302,47 +218,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }), axios.post('/api/bensfits').then(function (response) {
       _this.benefits = response.data;
     });
-    this.benefits.forEach(function (item, index) {
-      var isFind = _this.tmpCurrentPlan.benefits.findIndex(function (currentItem) {
-        return currentItem.name === item.name;
-      });
-
-      if (isFind !== -1) {
-        _this.benefits[index].checked = true;
-      }
+    axios.post('/api/plansBenefits/' + this.selectedPlanId).then(function (response) {
+      _this.cost = response.data.costSum;
     });
-    this.resubscribePeriodValue = this.tmpCurrentPlan.resubscribePeriod;
-    this.tmpCost = this.tmpCurrentPlan.cost;
   },
-  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])({
-    updateCard: 'updateCard',
-    saveCustomPlan: 'saveCustomPlan'
-  })), {}, {
-    onCheckBoxChange: function onCheckBoxChange(checked, cost) {//  checked ? this.tmpCost += cost : this.tmpCost -= cost;
-      //     axios.post('/api/onCheckBoxChange',checked, cost).then((response)=>{
-      //             console.log(response)
-      //     })
-    },
-    updateCardHandler: function updateCardHandler() {
-      this.tmpCurrentPlan.benefits = this.benefits.filter(function (item) {
-        return item.checked;
+  methods: {
+    onCheckBoxChange: function onCheckBoxChange(id) {
+      var _this2 = this;
+
+      axios.post('/api/onCheckBoxChange/' + id, this.selected).then(function (response) {
+        _this2.handler.tmpCost = response.data.costSum;
       });
-      this.tmpCurrentPlan.cost = this.tmpCost;
-      this.tmpCurrentPlan.resubscribePeriod = this.resubscribePeriodValue;
-      this.updateCard(this.tmpCurrentPlan);
-      this.$emit('save-changes');
     },
-    saveAsCustom: function saveAsCustom() {
-      this.tmpCurrentPlan.benefits = this.benefits.filter(function (item) {
-        return item.checked;
+    updateCardHandler: function updateCardHandler(id) {
+      var _this3 = this;
+
+      axios.post('/api/updateCardHandler/' + id, this.handler).then(function (response) {
+        _this3.$emit('back');
       });
-      this.tmpCurrentPlan.cost = this.tmpCost;
-      this.tmpCurrentPlan.resubscribePeriod = this.resubscribePeriodValue;
-      this.tmpCurrentPlan.id += '1';
-      this.saveCustomPlan(this.tmpCurrentPlan);
-      this.$emit('save-changes');
     }
-  })
+  }
 });
 
 /***/ }),
@@ -1042,6 +937,7 @@ __webpack_require__.r(__webpack_exports__);
   name: "Testimonials",
   data: function data() {
     return {
+      quotation: __webpack_require__(/*! ../../assets/quotation-marks.png */ "./resources/js/assets/quotation-marks.png"),
       testimonials: [{
         id: 1,
         text: "Lorem ipsum dolor sit amet consectetur, adipisicing\n                        elit. Consectetur nobis ut odit velit obcaecati,\n                        similique esse dolor repellat distinctio id ratione\n                        ullam ab dignissimos, rem, enim illum. Natus, tempora\n                        alias? Lorem ipsum dolor sit amet consectetur,\n                        adipisicing elit. Consectetur nobis ut odit velit\n                        obcaecati, similique esse dolor repellat distinctio id\n                        ratione ullam ab dignissimos, rem, enim illum. Natus,\n                        tempora alias?",
@@ -1073,7 +969,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 //
 //
 //
@@ -1104,7 +999,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Checkout',
   data: function data() {
@@ -1116,8 +1010,16 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    axios.post('/api/checked').then(function (response) {
-      _this.checked = response.data;
+    // axios.post('/api/checked').then((response)=>{
+    //     this.checked = response.data
+    // })
+    // this.$root.$on('plansItemArray', function (plansItemArray) {
+    //     console.log(plansItemArray);
+    // })
+    axios.post('/api/plansItem').then(function (response) {
+      _this.checked = response.data.plansItem;
+
+      _this.$emit('checkout');
     });
   }
 });
@@ -1334,16 +1236,15 @@ __webpack_require__.r(__webpack_exports__);
       type: String,
       "default": ''
     },
-    benefits: {
-      type: Array,
-      "default": function _default() {
-        return [];
-      }
-    },
+    // benefits: {
+    //   type: Array,
+    //   default: () => []
+    // },
     cost: {
       type: Number,
       "default": null
-    }
+    },
+    benefits: []
   }
 });
 
@@ -1360,11 +1261,10 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _PlansHeader__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../PlansHeader */ "./resources/js/components/plans/PlansHeader.vue");
-/* harmony import */ var _PlanCartDescription__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./PlanCartDescription */ "./resources/js/components/plans/plan-cart/PlanCartDescription.vue");
-/* harmony import */ var _PlanCartSummary__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./PlanCartSummary */ "./resources/js/components/plans/plan-cart/PlanCartSummary.vue");
-/* harmony import */ var _buttons_buttons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../buttons/buttons */ "./resources/js/components/buttons/buttons.vue");
+/* harmony import */ var _PlansHeader__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../PlansHeader */ "./resources/js/components/plans/PlansHeader.vue");
+/* harmony import */ var _PlanCartDescription__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./PlanCartDescription */ "./resources/js/components/plans/plan-cart/PlanCartDescription.vue");
+/* harmony import */ var _PlanCartSummary__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./PlanCartSummary */ "./resources/js/components/plans/plan-cart/PlanCartSummary.vue");
+/* harmony import */ var _buttons_buttons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../buttons/buttons */ "./resources/js/components/buttons/buttons.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -1525,7 +1425,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1533,10 +1441,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'PlanCartProduct',
   components: {
-    Buttons: _buttons_buttons__WEBPACK_IMPORTED_MODULE_5__["default"],
-    PlansHeader: _PlansHeader__WEBPACK_IMPORTED_MODULE_2__["default"],
-    PlanCartDescription: _PlanCartDescription__WEBPACK_IMPORTED_MODULE_3__["default"],
-    PlanCartSummary: _PlanCartSummary__WEBPACK_IMPORTED_MODULE_4__["default"]
+    Buttons: _buttons_buttons__WEBPACK_IMPORTED_MODULE_4__["default"],
+    PlansHeader: _PlansHeader__WEBPACK_IMPORTED_MODULE_1__["default"],
+    PlanCartDescription: _PlanCartDescription__WEBPACK_IMPORTED_MODULE_2__["default"],
+    PlanCartSummary: _PlanCartSummary__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   props: {
     selectedPlanId: {
@@ -1548,15 +1456,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       "default": null
     }
   },
-  computed: {// overalPrice() {
-    //     return this.tmpCurrentPlan.products.reduce((sum, item) => sum + (item.count * item.price), 0).toFixed(2);
-    // }
+  computed: {
+    overalPrice: function overalPrice() {
+      return this.product.reduce(function (sum, item) {
+        return sum + item.count * item.price;
+      }, 0);
+    }
   },
   data: function data() {
     return {
       choose: false,
       tmpCurrentPlan: {},
-      product: []
+      product: [],
+      cost: 0,
+      total: 0
     };
   },
   mounted: function mounted() {
@@ -1565,24 +1478,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     this.plansProduct();
     axios.post('/api/ChoosePlansItem/' + this.selectedPlanId).then(function (response) {
       _this.tmpCurrentPlan = response.data.plansItem;
+    }), axios.post('/api/plansBenefits/' + this.selectedPlanId).then(function (response) {
+      _this.cost = response.data.costSum;
     });
   },
   methods: {
-    // ...mapMutations({
-    //     checkout: 'checkout'
-    // }),
-    // increment(countproduct) {
-    //     console.log(countproduct)
-    //     //this.tmpCurrentPlan.product[count].count++;
-    // },
-    // decrement(count) {
-    //     const item = this.tmpCurrentPlan.product[count];
-    //     item.count > 1 ? item.count-- : '';
-    // },
-    // deleteProduct(id) {
-    //     this.tmpCurrentPlan.products.splice(id, 1);
-    // },
-    onCheckout: function onCheckout(id) {
+    increment: function increment(item) {
+      if (this.product.find(function (p) {
+        return p.id === item.id;
+      })) {
+        this.total = item.count++;
+      }
+    },
+    decrement: function decrement(item) {
+      if (this.product.find(function (p) {
+        return p.id === item.id;
+      })) {
+        this.total = item.count > 1 ? item.count-- : '';
+      }
+    },
+    deleteProduct: function deleteProduct(id) {
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -1590,11 +1505,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                axios.post('/api/onCheckout/' + id).then(function (response) {
-                  _this2.$emit('checkout', _this2.tmpCurrentPlan);
+                _context.next = 2;
+                return axios["delete"]('/api/deleteCartProduct/' + id).then(function (response) {
+                  var i = _this2.product.map(function (item) {
+                    return item.id;
+                  }).indexOf(id);
+
+                  _this2.product.splice(i, 1);
                 });
 
-              case 1:
+              case 2:
               case "end":
                 return _context.stop();
             }
@@ -1602,11 +1522,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    plansProduct: function plansProduct() {
+    onCheckout: function onCheckout(id) {
       var _this3 = this;
 
+      axios.post('/api/onCheckout/' + id).then(function (response) {
+        _this3.$emit('back', response.data.plansItem);
+      });
+    },
+    plansProduct: function plansProduct() {
+      var _this4 = this;
+
       axios.post('/api/plansProduct').then(function (response) {
-        _this3.product = response.data.array;
+        _this4.product = response.data.array;
+      });
+    },
+    update: function update(id) {
+      var _this5 = this;
+
+      axios.post('/api/updatePlan/' + id).then(function (response) {
+        // this.product = response.data.array
+        _this5.$emit('back');
       });
     }
   }
@@ -1707,9 +1642,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _assets_plans_plans_item_check_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../assets/plans/plans-item/check.png */ "./resources/js/assets/plans/plans-item/check.png");
-/* harmony import */ var _assets_plans_plans_item_check_png__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_assets_plans_plans_item_check_png__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _assets_plans_plans_item_check_png__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../assets/plans/plans-item/check.png */ "./resources/js/assets/plans/plans-item/check.png");
+/* harmony import */ var _assets_plans_plans_item_check_png__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_assets_plans_plans_item_check_png__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -1783,53 +1717,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'PlansItem',
-  props: ['cost', 'img', 'name', 'description', 'custom', 'updatedPlan', 'id'],
-  // props: {
-  //   custom: {
-  //     type: Boolean,
-  //     default: false
-  //   },
-  //   updatedPlan: {
-  //     type: Boolean,
-  //     default: false
-  //   },
-  //   id: {
-  //     type: String,
-  //     default: ''
-  //   },
-  //   img: {
-  //     type: String,
-  //     default: ''
-  //   },
-  //   name: {
-  //     type: String,
-  //     default: ''
-  //   },
-  //   description: {
-  //     type: String,
-  //     default: ''
-  //   },
-  //   cost: {
-  //     type: Number,
-  //     default: null
-  //   },
-  //   index: {
-  //     type: Number,
-  //     default: null
-  //   },
-  //   benefits: {
-  //     type: Array,
-  //     default: null
-  //   }
-  // },
+  props: ['img', 'name', 'description', 'custom', 'updatedPlan', 'id'],
   data: function data() {
     return {
-      check: _assets_plans_plans_item_check_png__WEBPACK_IMPORTED_MODULE_1___default.a,
-      activePlanId: ''
+      check: _assets_plans_plans_item_check_png__WEBPACK_IMPORTED_MODULE_0___default.a,
+      activePlanId: '',
+      benefits: {},
+      cost: 0,
+      period: ''
     };
   },
   computed: {
@@ -1837,17 +1739,15 @@ __webpack_require__.r(__webpack_exports__);
       return this.activePlanId === this.id;
     }
   },
-  methods: {
-    plansItem: function plansItem() {
-      var _this = this;
-
-      axios.post('/api/plansItem').then(function (response) {
-        _this.plansItemArray = response.data.plansItem;
-      });
-    }
-  },
   created: function created() {
-    this.plansItem();
+    var _this = this;
+
+    axios.post('/api/plansBenefits/' + this.id).then(function (response) {
+      console.log(response.data.length);
+      _this.benefits = response.data.name;
+      _this.cost = response.data.costSum;
+      _this.period = response.data.period;
+    });
   }
 });
 
@@ -1910,13 +1810,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'PlansWrapper',
   data: function data() {
     return {
-      plansItemArray: []
+      plansItemArray: [],
+      item: {}
     };
   },
   components: {
@@ -1940,7 +1863,13 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.post('/api/plansItem').then(function (response) {
-        _this.plansItemArray = response.data.plansItem;
+        if (response.data.data === null) {
+          _this.plansItemArray = response.data.plansItem;
+        } else {
+          console.log(2);
+          _this.item = response.data.data;
+        } // this.$root.$emit('plansItemArray', response.data.plansItem)
+
       });
     }
   }
@@ -2425,10 +2354,7 @@ var render = function() {
         [
           _c("v-col", { attrs: { sm: "3" } }, [
             _c("img", {
-              attrs: {
-                src: __webpack_require__(/*! ../../assets/editPlanImage.svg */ "./resources/js/assets/editPlanImage.svg"),
-                alt: "edit plan image"
-              }
+              attrs: { src: _vm.tmpCurrentPlan.img, alt: "edit plan image" }
             })
           ]),
           _vm._v(" "),
@@ -2459,7 +2385,7 @@ var render = function() {
                     ]),
                     _c("span", { staticClass: "font__price" }, [
                       _c("sub", [_vm._v("$")]),
-                      _vm._v(_vm._s(_vm.tmpCurrentPlan.cost))
+                      _vm._v(_vm._s(_vm.cost))
                     ])
                   ]),
                   _vm._v(" "),
@@ -2470,18 +2396,6 @@ var render = function() {
                       _c(
                         "v-row",
                         [
-                          _c("v-col", { attrs: { sm: "7" } }, [
-                            _c(
-                              "a",
-                              {
-                                staticClass: "yellow-link",
-                                attrs: { href: "#" },
-                                on: { click: _vm.saveAsCustom }
-                              },
-                              [_vm._v("Save as custom box")]
-                            )
-                          ]),
-                          _vm._v(" "),
                           _c("v-col", { attrs: { sm: "5" } }, [
                             _c(
                               "a",
@@ -2553,21 +2467,20 @@ var render = function() {
                             { attrs: { sm: "1" } },
                             [
                               _c("v-checkbox", {
-                                attrs: { color: "#EFB60F" },
+                                attrs: { color: "#EFB60F", value: item.id },
                                 on: {
                                   change: function($event) {
                                     return _vm.onCheckBoxChange(
-                                      item.checked,
-                                      item.cost
+                                      _vm.tmpCurrentPlan.id
                                     )
                                   }
                                 },
                                 model: {
-                                  value: item.checked,
+                                  value: _vm.selected,
                                   callback: function($$v) {
-                                    _vm.$set(item, "checked", $$v)
+                                    _vm.selected = $$v
                                   },
-                                  expression: "item.checked"
+                                  expression: "selected"
                                 }
                               })
                             ],
@@ -2633,11 +2546,15 @@ var render = function() {
                                   items: _vm.resubscribePeriod.periods
                                 },
                                 model: {
-                                  value: _vm.resubscribePeriodValue,
+                                  value: _vm.handler.resubscribePeriodValue,
                                   callback: function($$v) {
-                                    _vm.resubscribePeriodValue = $$v
+                                    _vm.$set(
+                                      _vm.handler,
+                                      "resubscribePeriodValue",
+                                      $$v
+                                    )
                                   },
-                                  expression: "resubscribePeriodValue"
+                                  expression: "handler.resubscribePeriodValue"
                                 }
                               })
                             ],
@@ -2666,7 +2583,7 @@ var render = function() {
         _vm._v(" "),
         _c("span", { staticClass: "font__price" }, [
           _c("sub", [_vm._v("$")]),
-          _vm._v(_vm._s(_vm.tmpCost))
+          _vm._v(_vm._s(_vm.handler.tmpCost))
         ])
       ]),
       _vm._v(" "),
@@ -2686,7 +2603,11 @@ var render = function() {
                     height: "52",
                     depressed: ""
                   },
-                  on: { click: _vm.updateCardHandler }
+                  on: {
+                    click: function($event) {
+                      return _vm.updateCardHandler(_vm.tmpCurrentPlan.id)
+                    }
+                  }
                 },
                 [_vm._v("\n      Save Changes\n    ")]
               )
@@ -3798,10 +3719,7 @@ var render = function() {
                     { staticClass: "quotation-holder" },
                     [
                       _c("v-img", {
-                        attrs: {
-                          src: "../../assets/quotation-marks.png",
-                          width: "70"
-                        }
+                        attrs: { src: _vm.quotation, width: "70" }
                       })
                     ],
                     1
@@ -3867,7 +3785,7 @@ var render = function() {
         _vm._v("\n    Number of your order: " + _vm._s(_vm.hardDate) + "\n  ")
       ]),
       _vm._v(" "),
-      _c("img", { attrs: { src: _vm.checked.img, alt: "" } }),
+      _c("img", { attrs: { src: _vm.checked.img, alt: _vm.checked.name } }),
       _vm._v(" "),
       _c("p", { staticClass: "plan-checkout__text mt-14" }, [
         _vm._v("\n    Your order was checked out successfully!\n  ")
@@ -4052,14 +3970,14 @@ var render = function() {
             _c(
               "h3",
               { staticClass: "plan-cart-description__title color-yellow mr-6" },
-              [_vm._v("\n        " + _vm._s(_vm.name) + "\n      ")]
+              [_vm._v("\n          " + _vm._s(_vm.name) + "\n        ")]
             ),
             _vm._v(" "),
             _c("p", { staticClass: "font__price mb-0 mr-16" }, [
               _c("span", { staticClass: "font__price_small mr-1" }, [
                 _vm._v("$")
               ]),
-              _vm._v(_vm._s(_vm.cost) + "\n      ")
+              _vm._v(_vm._s(_vm.cost) + "\n        ")
             ])
           ]),
           _vm._v(" "),
@@ -4074,8 +3992,6 @@ var render = function() {
                   "div",
                   { key: item.id, staticClass: "d-flex align-center mb-4" },
                   [
-                    _c("img", { attrs: { src: item.image, alt: item.name } }),
-                    _vm._v(" "),
                     _c(
                       "p",
                       {
@@ -4084,7 +4000,7 @@ var render = function() {
                       },
                       [
                         _vm._v(
-                          "\n            " + _vm._s(item.name) + "\n          "
+                          "\n              " + _vm._s(item) + "\n            "
                         )
                       ]
                     )
@@ -4107,7 +4023,7 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v("\n        Customize\n      ")]
+              [_vm._v("\n          Customize\n        ")]
             )
           ])
         ],
@@ -4155,14 +4071,14 @@ var render = function() {
           }),
           _vm._v(" "),
           _c("p", { staticClass: "font__description" }, [
-            _vm._v("\n                Your plan:\n            ")
+            _vm._v("\n            Your plan:\n        ")
           ])
         ],
         1
       ),
       _vm._v(" "),
       _c("PlanCartDescription", {
-        attrs: { name: _vm.tmpCurrentPlan.name, cost: _vm.tmpCurrentPlan.cost },
+        attrs: { name: _vm.tmpCurrentPlan.name, cost: _vm.cost },
         on: {
           customize: function($event) {
             return _vm.$emit("customize")
@@ -4224,9 +4140,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                            " +
+                                "\n                        " +
                                   _vm._s(item.title) +
-                                  "\n                        "
+                                  "\n                    "
                               )
                             ]
                           ),
@@ -4252,7 +4168,7 @@ var render = function() {
                               [_vm._v("$")]
                             ),
                             _vm._v(
-                              _vm._s(item.price) + "\n                        "
+                              _vm._s(item.price) + "\n                    "
                             )
                           ]
                         )
@@ -4279,13 +4195,13 @@ var render = function() {
                               },
                               on: {
                                 click: function($event) {
-                                  return _vm.decrement(item.count)
+                                  return _vm.decrement(item)
                                 }
                               }
                             },
                             [
                               _vm._v(
-                                "\n                            -\n                        "
+                                "\n                        -\n                    "
                               )
                             ]
                           ),
@@ -4327,13 +4243,13 @@ var render = function() {
                               },
                               on: {
                                 click: function($event) {
-                                  return _vm.increment(item.count)
+                                  return _vm.increment(item)
                                 }
                               }
                             },
                             [
                               _vm._v(
-                                "\n                            +\n                        "
+                                "\n                        +\n                    "
                               )
                             ]
                           ),
@@ -4372,11 +4288,22 @@ var render = function() {
           )
         : _c("div", [
             _c("h2", { staticClass: "font__title mt-4 mb-16" }, [
-              _vm._v("\n                No Products\n            ")
+              _vm._v("\n            No Products\n        ")
             ])
           ]),
       _vm._v(" "),
-      _vm._m(0),
+      _c("div", { staticClass: "text-right my-10" }, [
+        _c("span", { staticClass: "overall-price__text mb-1 mr-4" }, [
+          _vm._v("Overal:")
+        ]),
+        _vm._v(" "),
+        _c("span", { staticClass: "overall-price__price mb-0" }, [
+          _c("span", { staticClass: "overall-price__price_small mr-1" }, [
+            _vm._v("$")
+          ]),
+          _vm._v("\n    " + _vm._s(_vm.overalPrice) + "\n  ")
+        ])
+      ]),
       _vm._v(" "),
       _c(
         "div",
@@ -4384,7 +4311,7 @@ var render = function() {
         [
           _c("p", [
             _vm._v(
-              "\n                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores consequuntur cumque dolore earum\n                error harum laborum perspiciatis quasi\n            "
+              "\n            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores consequuntur cumque dolore earum\n            error harum laborum perspiciatis quasi\n        "
             )
           ]),
           _vm._v(" "),
@@ -4407,9 +4334,30 @@ var render = function() {
                     }
                   }
                 },
-                [_vm._v("\n                Checkout\n            ")]
+                [_vm._v("\n            Checkout\n        ")]
               )
-            : _vm._e()
+            : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "v-btn",
+            {
+              staticClass: "custom-btn custom-btn--checkout ml-auto mr-12",
+              attrs: {
+                rounded: "",
+                outlined: "",
+                color: "#efb60f",
+                width: "170",
+                height: "52",
+                depressed: ""
+              },
+              on: {
+                click: function($event) {
+                  return _vm.update(_vm.selectedPlanId)
+                }
+              }
+            },
+            [_vm._v("\n            Update Plan\n        ")]
+          )
         ],
         1
       )
@@ -4417,24 +4365,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "text-right my-10" }, [
-      _c("span", { staticClass: "overall-price__text mb-1 mr-4" }, [
-        _vm._v("Overal:")
-      ]),
-      _vm._v(" "),
-      _c("span", { staticClass: "overall-price__price mb-0" }, [
-        _c("span", { staticClass: "overall-price__price_small mr-1" }, [
-          _vm._v("$")
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -4611,7 +4542,35 @@ var render = function() {
             _vm._v(_vm._s(_vm.cost) + "\n            ")
           ]),
           _vm._v(" "),
-          _c("div")
+          _c(
+            "div",
+            [
+              _c("p", { staticClass: "plans-item-content__description" }, [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(_vm.period) +
+                    "\n                "
+                )
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.benefits, function(item) {
+                return _c("div", { staticClass: "benefits-item" }, [
+                  _c(
+                    "p",
+                    {
+                      staticClass: "plans-item-content__shipping color-yellow"
+                    },
+                    [
+                      _vm._v(
+                        "\n              " + _vm._s(item) + "\n            "
+                      )
+                    ]
+                  )
+                ])
+              })
+            ],
+            2
+          )
         ]),
         _vm._v(" "),
         _c(
@@ -4694,37 +4653,71 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c(
-            "v-row",
-            { staticClass: "plan-items", attrs: { justify: "space-around" } },
-            _vm._l(_vm.plansItemArray, function(item, index) {
-              return _c(
-                "v-col",
+          Object.keys(this.item).length === 0
+            ? _c(
+                "v-row",
                 {
-                  key: item.id,
-                  staticClass: "my-5",
-                  attrs: { xs: "12", sm: "12", md: "12", lg: "4" }
+                  staticClass: "plan-items",
+                  attrs: { justify: "space-around" }
                 },
-                [
-                  _c("PlansItem", {
-                    attrs: {
-                      id: item.id,
-                      img: item.img,
-                      name: item.name,
-                      description: item.description,
-                      cost: item.cost,
-                      index: index,
-                      "updated-plan": item.updated,
-                      custom: item.custom
+                _vm._l(_vm.plansItemArray, function(item, index) {
+                  return _c(
+                    "v-col",
+                    {
+                      key: item.id,
+                      staticClass: "my-5",
+                      attrs: { xs: "12", sm: "12", md: "12", lg: "4" }
                     },
-                    on: { "select-plan": _vm.selectPlan }
-                  })
-                ],
+                    [
+                      _c("PlansItem", {
+                        attrs: {
+                          id: item.id,
+                          img: item.img,
+                          name: item.name,
+                          description: item.description,
+                          index: index,
+                          "updated-plan": item.updated,
+                          custom: item.custom
+                        },
+                        on: { "select-plan": _vm.selectPlan }
+                      })
+                    ],
+                    1
+                  )
+                }),
                 1
               )
-            }),
-            1
-          ),
+            : _c(
+                "v-row",
+                {
+                  staticClass: "plan-items",
+                  attrs: { justify: "space-around" }
+                },
+                [
+                  _c(
+                    "v-col",
+                    {
+                      staticClass: "my-5",
+                      attrs: { xs: "12", sm: "12", md: "12", lg: "4" }
+                    },
+                    [
+                      _c("PlansItem", {
+                        attrs: {
+                          id: _vm.item.id,
+                          img: _vm.item.img,
+                          name: _vm.item.name,
+                          description: _vm.item.description,
+                          "updated-plan": _vm.item.updated,
+                          custom: _vm.item.custom
+                        },
+                        on: { "select-plan": _vm.selectPlan }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
           _vm._v(" "),
           _c("p", { staticClass: "font__small-description" }, [
             _vm._v(
@@ -4793,17 +4786,6 @@ var staticRenderFns = []
 render._withStripped = true
 
 
-
-/***/ }),
-
-/***/ "./resources/js/assets/editPlanImage.svg":
-/*!***********************************************!*\
-  !*** ./resources/js/assets/editPlanImage.svg ***!
-  \***********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/editPlanImage.svg?a472ca4fbd61371063963a3b6dd71d3e";
 
 /***/ }),
 
@@ -5072,6 +5054,17 @@ module.exports = "/images/8.jpg?c68d71a621ddbbd7817bfa9180f31d51";
 /***/ (function(module, exports) {
 
 module.exports = "/images/9.jpg?71cc3b47ec7cb1539858f959b2aed12f";
+
+/***/ }),
+
+/***/ "./resources/js/assets/quotation-marks.png":
+/*!*************************************************!*\
+  !*** ./resources/js/assets/quotation-marks.png ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/quotation-marks.png?84df8ec95e6ea25db56034295a3e0603";
 
 /***/ }),
 

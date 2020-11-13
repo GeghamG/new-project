@@ -47,14 +47,14 @@
                         </v-list-item-title>
                     </v-list-item>
 
-                    <v-list-item  @click="logout">
-                        <v-list-item-action>
-                            <v-icon></v-icon>
-                        </v-list-item-action>
-                        <v-list-item-title>
-                            Logout
-                        </v-list-item-title>
-                    </v-list-item>
+<!--                    <v-list-item  @click="logout">-->
+<!--                        <v-list-item-action>-->
+<!--                            <v-icon></v-icon>-->
+<!--                        </v-list-item-action>-->
+<!--                        <v-list-item-title>-->
+<!--                            Logout-->
+<!--                        </v-list-item-title>-->
+<!--                    </v-list-item>-->
                 </v-list-item-group>
             </v-list>
         </v-navigation-drawer>
@@ -87,15 +87,15 @@ export default {
             }
         ]
     }),
-    methods:{
-        logout(){
-            axios.post('/api/admin/logout').then((response)=>{
-                if(response.status === 200){
-                    localStorage.removeItem('tokenAdmin');
-                    router.push('/');
-                }
-            })
-        }
-    }
+    // methods:{
+    //     logout(){
+    //         axios.post('/api/admin/logout').then((response)=>{
+    //             if(response.status === 200){
+    //                 localStorage.removeItem('tokenAdmin');
+    //                 router.push('/');
+    //             }
+    //         })
+    //     }
+    // }
 };
 </script>

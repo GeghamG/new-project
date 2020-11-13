@@ -33,20 +33,24 @@
                 <span class="font__price_small">$</span>{{ cost }}
             </p>
             <div>
-<!--                <div-->
-<!--            v-for="(item, index) in benefits"-->
-<!--            :key="index"-->
-<!--            class="benefits-item"-->
-<!--          >-->
-<!--            <img-->
-<!--              :src="item.image"-->
-<!--              :alt="name"-->
-<!--            />-->
-<!--            <p class="plans-item-content__shipping color-yellow">-->
-<!--              {{ item.name }}-->
-<!--            </p>-->
-<!--          </div>-->
-        </div>
+                <p class="plans-item-content__description">
+                    {{ period }}
+                </p>
+
+
+<!--<div  v-if="benefits && benefits.length>0">-->
+        <div
+            class="benefits-item"
+            v-for="item in benefits"
+          >
+            <p class="plans-item-content__shipping color-yellow">
+              {{ item }}
+            </p>
+          </div>
+<!--</div>-->
+
+
+            </div>
       </div>
       <v-btn
         rounded
@@ -72,67 +76,29 @@
   </div>
 </template>
 <script>
-import { mapState } from 'vuex';
 import  check  from "../../../assets/plans/plans-item/check.png"
 export default {
   name: 'PlansItem',
-    props:['cost', 'img', 'name', 'description', 'custom', 'updatedPlan', 'id' ],
-  // props: {
-  //   custom: {
-  //     type: Boolean,
-  //     default: false
-  //   },
-  //   updatedPlan: {
-  //     type: Boolean,
-  //     default: false
-  //   },
-  //   id: {
-  //     type: String,
-  //     default: ''
-  //   },
-  //   img: {
-  //     type: String,
-  //     default: ''
-  //   },
-  //   name: {
-  //     type: String,
-  //     default: ''
-  //   },
-  //   description: {
-  //     type: String,
-  //     default: ''
-  //   },
-  //   cost: {
-  //     type: Number,
-  //     default: null
-  //   },
-  //   index: {
-  //     type: Number,
-  //     default: null
-  //   },
-  //   benefits: {
-  //     type: Array,
-  //     default: null
-  //   }
-  // },
+    props:[ 'img', 'name', 'description', 'custom', 'updatedPlan', 'id' ],
   data: () => ({
     check:check,
-    activePlanId:''
+    activePlanId:'',
+    benefits:{},
+    cost:0,
+    period:''
   }),
   computed: {
     current() {
       return this.activePlanId === this.id;
     }
   },
-    methods:{
-        plansItem(){
-            axios.post('/api/plansItem').then((response)=>{
-                this.plansItemArray = response.data.plansItem
-            })
-        }
-    },
     created() {
-      this.plansItem()
-    }
+            axios.post('/api/plansBenefits/'+this.id).then((response)=>{
+                console.log(response.data.length)
+                this.benefits = response.data.name
+                this.cost = response.data.costSum
+                this.period = response.data.period
+            })
+    },
 };
 </script>

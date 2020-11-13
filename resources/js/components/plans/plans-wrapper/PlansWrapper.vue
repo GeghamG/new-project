@@ -8,6 +8,7 @@
         @back="$emit('back')"
       />
       <v-row
+          v-if="Object.keys(this.item).length === 0"
         class="plan-items"
         justify="space-around"
       >
@@ -20,13 +21,12 @@
           lg="4"
           class="my-5"
         >
-            <!--            :benefits="item.benefits" :index="index"  :custom="item.custom" :updated-plan="item.updated"-->
+
           <PlansItem
             :id="item.id"
             :img="item.img"
             :name="item.name"
             :description="item.description"
-            :cost="item.cost"
             :index="index"
             :updated-plan="item.updated"
             :custom="item.custom"
@@ -34,7 +34,29 @@
           />
         </v-col>
       </v-row>
-
+        <v-row
+            v-else
+            class="plan-items"
+            justify="space-around"
+        >
+            <v-col
+                xs="12"
+                sm="12"
+                md="12"
+                lg="4"
+                class="my-5"
+            >
+                <PlansItem
+                    :id="item.id"
+                    :img="item.img"
+                    :name="item.name"
+                    :description="item.description"
+                    :updated-plan="item.updated"
+                    :custom="item.custom"
+                    @select-plan="selectPlan"
+                />
+            </v-col>
+        </v-row>
       <p class="font__small-description">
         * Lorem Ipsum is simply dummy text of the printing and
         typesetting industry. Lorem Ipsum has been the industry's
@@ -51,7 +73,8 @@ import PlansItem from './PlansItem';
 export default {
   name: 'PlansWrapper',
     data: () => ({
-        plansItemArray:[]
+        plansItemArray:[],
+        item:{}
     }),
   components: {
     PlansHeader,
@@ -72,10 +95,15 @@ export default {
     },
       plansItem(){
         axios.post('/api/plansItem').then((response)=>{
+            if(response.data.data === null ){
             this.plansItemArray = response.data.plansItem
+            }else{
+                console.log(2)
+                this.item = response.data.data
+            }
+           // this.$root.$emit('plansItemArray', response.data.plansItem)
         })
     }
   }
-
 };
 </script>

@@ -47,7 +47,6 @@ class AdminController extends Controller
     public function logout()
     {
         auth()->guard('admins')->logout();
-
         return response()->json(['message' => 'Successfully logged out']);
     }
 
